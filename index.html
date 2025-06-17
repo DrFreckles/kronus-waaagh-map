@@ -196,17 +196,17 @@
         .flatland { border-color: #7cfc00; color: #000000; background: radial-gradient(circle, rgba(124,252,0,0.4), rgba(154,205,50,0.6)); }
         
         /* WAAAGH! Ownership Colors - Override terrain colors when claimed */
-        .owned-by-skarjaw { 
+        .owned-by-Reginald { 
             border-color: #ff0000 !important; 
             background: radial-gradient(circle, rgba(255,0,0,0.4), rgba(139,0,0,0.6)) !important; 
             color: #ffffff !important;
         }
-        .owned-by-grimtoof { 
+        .owned-by-Twoferone { 
             border-color: #ffff00 !important; 
             background: radial-gradient(circle, rgba(255,255,0,0.4), rgba(218,165,32,0.6)) !important; 
             color: #000000 !important;
         }
-        .owned-by-skullkrusha { 
+        .owned-by-Loraghz Neckcrusha { 
             border-color: #800080 !important; 
             background: radial-gradient(circle, rgba(128,0,128,0.4), rgba(75,0,130,0.6)) !important; 
             color: #ffffff !important;
@@ -252,6 +252,8 @@
     background: radial-gradient(circle, rgba(218,165,32,0.4), rgba(184,134,11,0.6)) !important; 
     color: #000000 !important;
 }
+
+
         
         /* Control level indicators */
         .control-contested { border-width: 2px !important; }
@@ -595,15 +597,15 @@
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: #ff0000;"></div>
-                <span>Skarjaw</span>
+                <span>Reginald</span>
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: #ffff00;"></div>
-                <span>Grimtoof</span>
+                <span>Twoferone</span>
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: #800080;"></div>
-                <span>Skullkrusha</span>
+                <span>Loraghz Neckcrusha</span>
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: #ffa500;"></div>
@@ -693,7 +695,7 @@
     if (territory) {
         // Remove any existing ownership classes - ADD NEW NAMES HERE
         territory.classList.remove(
-            'owned-by-skarjaw', 'owned-by-grimtoof', 'owned-by-skullkrusha', 
+            'owned-by-Reginald', 'owned-by-Twoferone', 'owned-by-Loraghz Neckcrusha', 
             'owned-by-ironjaw', 'owned-by-greenfist', 'owned-by-blacktooth', 
             'owned-by-redskull', 'owned-by-bonekrakka', 'owned-by-thugskull',
             'owned-by-rippa', 'owned-by-scrapfist'
@@ -717,7 +719,7 @@ function liberateTerritory(territoryName) {
     const territory = document.querySelector(`[data-name="${territoryName}"]`);
     if (territory) {
         territory.classList.remove(
-            'owned-by-skarjaw', 'owned-by-grimtoof', 'owned-by-skullkrusha', 
+            'owned-by-Reginald', 'owned-by-Twoferone', 'owned-by-Loraghz Neckcrusha', 
             'owned-by-ironjaw', 'owned-by-greenfist', 'owned-by-blacktooth', 
             'owned-by-redskull', 'owned-by-bonekrakka', 'owned-by-thugskull',
             'owned-by-rippa', 'owned-by-scrapfist'
@@ -732,7 +734,7 @@ function liberateTerritory(territoryName) {
         
         // Update multiple territories at once
         function updateMap(territoryData) {
-            // territoryData = [{"territory": "Norf Skar Fortress", "owner": "Skarjaw", "control": "secured"}, ...]
+            // territoryData = [{"territory": "Norf Skar Fortress", "owner": "Reginald", "control": "secured"}, ...]
             territoryData.forEach(data => {
                 claimTerritory(data.territory, data.owner, data.control || 'contested');
             });
@@ -773,9 +775,9 @@ function liberateTerritory(territoryName) {
         // Example usage - Remove these lines when using in production
         /*
         // Example: Claim some territories
-        claimTerritory("Norf Skar Fortress", "Skarjaw", "fortified");
-        claimTerritory("Victory Skar Bay", "Grimtoof", "secured");
-        claimTerritory("Speed Freek Plains", "Skullkrusha", "contested");
+        claimTerritory("Norf Skar Fortress", "Reginald", "fortified");
+        claimTerritory("Victory Skar Bay", "Twoferone", "secured");
+        claimTerritory("Speed Freek Plains", "Loraghz Neckcrusha", "contested");
         
         // Example: Save current state
         console.log("Current map state:", saveMapState());
