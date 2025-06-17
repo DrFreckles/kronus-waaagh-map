@@ -231,6 +231,27 @@
             background: radial-gradient(circle, rgba(139,0,0,0.4), rgba(205,92,92,0.6)) !important; 
             color: #ffffff !important;
         }
+
+	.owned-by-bonekrakka { 
+    border-color: #00ffff !important; 
+    background: radial-gradient(circle, rgba(0,255,255,0.4), rgba(0,139,139,0.6)) !important; 
+    color: #000000 !important;
+}
+.owned-by-thugskull { 
+    border-color: #ff69b4 !important; 
+    background: radial-gradient(circle, rgba(255,105,180,0.4), rgba(199,21,133,0.6)) !important; 
+    color: #000000 !important;
+}
+.owned-by-rippa { 
+    border-color: #32cd32 !important; 
+    background: radial-gradient(circle, rgba(50,205,50,0.4), rgba(34,139,34,0.6)) !important; 
+    color: #ffffff !important;
+}
+.owned-by-scrapfist { 
+    border-color: #daa520 !important; 
+    background: radial-gradient(circle, rgba(218,165,32,0.4), rgba(184,134,11,0.6)) !important; 
+    color: #000000 !important;
+}
         
         /* Control level indicators */
         .control-contested { border-width: 2px !important; }
@@ -600,6 +621,22 @@
                 <div class="legend-color" style="background: #8b0000;"></div>
                 <span>Redskull</span>
             </div>
+	    <div class="legend-item">
+    		<div class="legend-color" style="background: #00ffff;"></div>
+   		 <span>Bonekrakka</span>
+	    </div>
+	    <div class="legend-item">
+    		<div class="legend-color" style="background: #ff69b4;"></div>
+    		<span>Thugskull</span>
+            </div>
+	    <div class="legend-item">
+    		<div class="legend-color" style="background: #32cd32;"></div>
+    		<span>Rippa</span>
+            </div>
+	    <div class="legend-item">
+    		<div class="legend-color" style="background: #daa520;"></div>
+    		<span>Scrapfist</span>
+            </div>
         </div>
     </div>
     
@@ -652,42 +689,46 @@
         
         // Claim a territory for a WAAAGH!
         function claimTerritory(territoryName, warbossName, controlLevel = 'contested') {
-            const territory = document.querySelector(`[data-name="${territoryName}"]`);
-            if (territory) {
-                // Remove any existing ownership classes
-                territory.classList.remove(
-                    'owned-by-skarjaw', 'owned-by-grimtoof', 'owned-by-skullkrusha', 
-                    'owned-by-ironjaw', 'owned-by-greenfist', 'owned-by-blacktooth', 'owned-by-redskull'
-                );
-                territory.classList.remove('control-contested', 'control-secured', 'control-fortified');
-                
-                // Add new ownership
-                territory.classList.add(`owned-by-${warbossName.toLowerCase()}`);
-                territory.classList.add(`control-${controlLevel}`);
-                territory.dataset.owner = warbossName;
-                territory.dataset.controlLevel = controlLevel;
-                
-                console.log(`${territoryName} claimed by ${warbossName} (${controlLevel})`);
-            } else {
-                console.error(`Territory "${territoryName}" not found`);
-            }
-        }
+    const territory = document.querySelector(`[data-name="${territoryName}"]`);
+    if (territory) {
+        // Remove any existing ownership classes - ADD NEW NAMES HERE
+        territory.classList.remove(
+            'owned-by-skarjaw', 'owned-by-grimtoof', 'owned-by-skullkrusha', 
+            'owned-by-ironjaw', 'owned-by-greenfist', 'owned-by-blacktooth', 
+            'owned-by-redskull', 'owned-by-bonekrakka', 'owned-by-thugskull',
+            'owned-by-rippa', 'owned-by-scrapfist'
+        );
+        territory.classList.remove('control-contested', 'control-secured', 'control-fortified');
         
-        // Liberate a territory (remove ownership)
-        function liberateTerritory(territoryName) {
-            const territory = document.querySelector(`[data-name="${territoryName}"]`);
-            if (territory) {
-                territory.classList.remove(
-                    'owned-by-skarjaw', 'owned-by-grimtoof', 'owned-by-skullkrusha', 
-                    'owned-by-ironjaw', 'owned-by-greenfist', 'owned-by-blacktooth', 'owned-by-redskull'
-                );
-                territory.classList.remove('control-contested', 'control-secured', 'control-fortified');
-                delete territory.dataset.owner;
-                delete territory.dataset.controlLevel;
-                
-                console.log(`${territoryName} liberated`);
-            }
-        }
+        // Add new ownership
+        territory.classList.add(`owned-by-${warbossName.toLowerCase()}`);
+        territory.classList.add(`control-${controlLevel}`);
+        territory.dataset.owner = warbossName;
+        territory.dataset.controlLevel = controlLevel;
+        
+        console.log(`${territoryName} claimed by ${warbossName} (${controlLevel})`);
+    } else {
+        console.error(`Territory "${territoryName}" not found`);
+    }
+}
+
+// Also update the liberateTerritory function
+function liberateTerritory(territoryName) {
+    const territory = document.querySelector(`[data-name="${territoryName}"]`);
+    if (territory) {
+        territory.classList.remove(
+            'owned-by-skarjaw', 'owned-by-grimtoof', 'owned-by-skullkrusha', 
+            'owned-by-ironjaw', 'owned-by-greenfist', 'owned-by-blacktooth', 
+            'owned-by-redskull', 'owned-by-bonekrakka', 'owned-by-thugskull',
+            'owned-by-rippa', 'owned-by-scrapfist'
+        );
+        territory.classList.remove('control-contested', 'control-secured', 'control-fortified');
+        delete territory.dataset.owner;
+        delete territory.dataset.controlLevel;
+        
+        console.log(`${territoryName} liberated`);
+    }
+}
         
         // Update multiple territories at once
         function updateMap(territoryData) {
