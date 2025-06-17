@@ -1308,16 +1308,18 @@
             console.log("- Sandy Tomb World: 8-way thin radial stripes");
         }
         
+        window.demoSharedControl = demoMultiFactionControl;
         window.demoMultiFactionControl = demoMultiFactionControl;
         
         console.log("=== KRONUS MAP READY ===");
         console.log("Available functions:");
         console.log("- claimTerritory(name, owner, level)");
-        console.log("- claimTerritoryShared(name, [owner1, owner2], level)");
+        console.log("- claimTerritoryShared(name, [owner1, owner2, ...], level)");
         console.log("- liberateTerritory(name)");
-        console.log("- demoSharedControl() - Test the shared control system");
+        console.log("- demoSharedControl() - Test 2-8 faction control patterns");
+        console.log("- demoMultiFactionControl() - Same as above");
         console.log("- saveMapState() / loadMapState(json)");
-        console.log("Try: demoSharedControl() to see shared territories in action!");
+        console.log("Try: demoMultiFactionControl() to see multi-faction territories!");
     </script>
 </body>
 </html>
