@@ -196,12 +196,12 @@
         .flatland { border-color: #7cfc00; color: #000000; background: radial-gradient(circle, rgba(124,252,0,0.4), rgba(154,205,50,0.6)); }
         
         /* WAAAGH! Ownership Colors - Override terrain colors when claimed */
-        .owned-by-Reginald { 
+        .owned-by-reginald { 
             border-color: #ff0000 !important; 
             background: radial-gradient(circle, rgba(255,0,0,0.4), rgba(139,0,0,0.6)) !important; 
             color: #ffffff !important;
         }
-        .owned-by-Twoferone { 
+        .owned-by-twoferone { 
             border-color: #ffff00 !important; 
             background: radial-gradient(circle, rgba(255,255,0,0.4), rgba(218,165,32,0.6)) !important; 
             color: #000000 !important;
@@ -231,483 +231,302 @@
             background: radial-gradient(circle, rgba(139,0,0,0.4), rgba(205,92,92,0.6)) !important; 
             color: #ffffff !important;
         }
-
-	.owned-by-bonekrakka { 
-    border-color: #00ffff !important; 
-    background: radial-gradient(circle, rgba(0,255,255,0.4), rgba(0,139,139,0.6)) !important; 
-    color: #000000 !important;
-}
-.owned-by-thugskull { 
-    border-color: #ff69b4 !important; 
-    background: radial-gradient(circle, rgba(255,105,180,0.4), rgba(199,21,133,0.6)) !important; 
-    color: #000000 !important;
-}
-.owned-by-rippa { 
-    border-color: #32cd32 !important; 
-    background: radial-gradient(circle, rgba(50,205,50,0.4), rgba(34,139,34,0.6)) !important; 
-    color: #ffffff !important;
-}
-.owned-by-scrapfist { 
-    border-color: #daa520 !important; 
-    background: radial-gradient(circle, rgba(218,165,32,0.4), rgba(184,134,11,0.6)) !important; 
-    color: #000000 !important;
-}
-
-/* ========================================
-   SHARED TERRITORY CONTROL STYLES (SIMPLE)
-   ======================================== */
-
-
-
-/* Three-way using stripes */
-.shared-three-way {
-    background: linear-gradient(to right, #ff0000 33.33%, #ffff00 33.33% 66.66%, #800080 66.66%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-/* Contested/neutral */
-.shared-contested {
-    background: repeating-linear-gradient(
-        45deg,
-        #ffffff 0px,
-        #ffffff 3px,
-        transparent 3px,
-        transparent 6px
-    ) !important;
-    border: 4px dashed #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
-}
-/* ========================================
-   COMPLETE SHARED TERRITORY COMBINATIONS
-   ======================================== */
-
-/* Reginald combinations (RED) */
-.shared-reginald-twoferone {
-    background: linear-gradient(to right, #ff0000 50%, #ffff00 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-reginald-loraghzneckcrusha {
-    background: linear-gradient(to right, #ff0000 50%, #800080 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-reginald-ironjaw {
-    background: linear-gradient(to right, #ff0000 50%, #ffa500 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-reginald-greenfist {
-    background: linear-gradient(to right, #ff0000 50%, #00ff00 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-reginald-blacktooth {
-    background: linear-gradient(to right, #ff0000 50%, #ffffff 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-reginald-redskull {
-    background: linear-gradient(to right, #ff0000 50%, #8b0000 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-reginald-bonekrakka {
-    background: linear-gradient(to right, #ff0000 50%, #00ffff 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-reginald-thugskull {
-    background: linear-gradient(to right, #ff0000 50%, #ff69b4 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-reginald-rippa {
-    background: linear-gradient(to right, #ff0000 50%, #32cd32 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-reginald-scrapfist {
-    background: linear-gradient(to right, #ff0000 50%, #daa520 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-/* Twoferone combinations (YELLOW) */
-.shared-twoferone-loraghzneckcrusha {
-    background: linear-gradient(to right, #ffff00 50%, #800080 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-twoferone-ironjaw {
-    background: linear-gradient(to right, #ffff00 50%, #ffa500 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-twoferone-greenfist {
-    background: linear-gradient(to right, #ffff00 50%, #00ff00 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-twoferone-blacktooth {
-    background: linear-gradient(to right, #ffff00 50%, #ffffff 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-twoferone-redskull {
-    background: linear-gradient(to right, #ffff00 50%, #8b0000 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-twoferone-bonekrakka {
-    background: linear-gradient(to right, #ffff00 50%, #00ffff 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-twoferone-thugskull {
-    background: linear-gradient(to right, #ffff00 50%, #ff69b4 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-twoferone-rippa {
-    background: linear-gradient(to right, #ffff00 50%, #32cd32 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-twoferone-scrapfist {
-    background: linear-gradient(to right, #ffff00 50%, #daa520 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-/* Loraghz Neckcrusha combinations (PURPLE) */
-.shared-loraghzneckcrusha-ironjaw {
-    background: linear-gradient(to right, #800080 50%, #ffa500 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-loraghzneckcrusha-greenfist {
-    background: linear-gradient(to right, #800080 50%, #00ff00 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-loraghzneckcrusha-blacktooth {
-    background: linear-gradient(to right, #800080 50%, #ffffff 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-loraghzneckcrusha-redskull {
-    background: linear-gradient(to right, #800080 50%, #8b0000 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-loraghzneckcrusha-bonekrakka {
-    background: linear-gradient(to right, #800080 50%, #00ffff 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-loraghzneckcrusha-thugskull {
-    background: linear-gradient(to right, #800080 50%, #ff69b4 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-loraghzneckcrusha-rippa {
-    background: linear-gradient(to right, #800080 50%, #32cd32 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-loraghzneckcrusha-scrapfist {
-    background: linear-gradient(to right, #800080 50%, #daa520 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-/* Ironjaw combinations (ORANGE) */
-.shared-ironjaw-greenfist {
-    background: linear-gradient(to right, #ffa500 50%, #00ff00 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-ironjaw-blacktooth {
-    background: linear-gradient(to right, #ffa500 50%, #ffffff 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-ironjaw-redskull {
-    background: linear-gradient(to right, #ffa500 50%, #8b0000 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-ironjaw-bonekrakka {
-    background: linear-gradient(to right, #ffa500 50%, #00ffff 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-ironjaw-thugskull {
-    background: linear-gradient(to right, #ffa500 50%, #ff69b4 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-ironjaw-rippa {
-    background: linear-gradient(to right, #ffa500 50%, #32cd32 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-ironjaw-scrapfist {
-    background: linear-gradient(to right, #ffa500 50%, #daa520 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-/* Greenfist combinations (GREEN) */
-.shared-greenfist-blacktooth {
-    background: linear-gradient(to right, #00ff00 50%, #ffffff 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-greenfist-redskull {
-    background: linear-gradient(to right, #00ff00 50%, #8b0000 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-greenfist-bonekrakka {
-    background: linear-gradient(to right, #00ff00 50%, #00ffff 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-greenfist-thugskull {
-    background: linear-gradient(to right, #00ff00 50%, #ff69b4 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-greenfist-rippa {
-    background: linear-gradient(to right, #00ff00 50%, #32cd32 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-greenfist-scrapfist {
-    background: linear-gradient(to right, #00ff00 50%, #daa520 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-/* Blacktooth combinations (WHITE) */
-.shared-blacktooth-redskull {
-    background: linear-gradient(to right, #ffffff 50%, #8b0000 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-blacktooth-bonekrakka {
-    background: linear-gradient(to right, #ffffff 50%, #00ffff 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-blacktooth-thugskull {
-    background: linear-gradient(to right, #ffffff 50%, #ff69b4 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-blacktooth-rippa {
-    background: linear-gradient(to right, #ffffff 50%, #32cd32 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-blacktooth-scrapfist {
-    background: linear-gradient(to right, #ffffff 50%, #daa520 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-/* Redskull combinations (DARK RED) */
-.shared-redskull-bonekrakka {
-    background: linear-gradient(to right, #8b0000 50%, #00ffff 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-redskull-thugskull {
-    background: linear-gradient(to right, #8b0000 50%, #ff69b4 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-redskull-rippa {
-    background: linear-gradient(to right, #8b0000 50%, #32cd32 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-redskull-scrapfist {
-    background: linear-gradient(to right, #8b0000 50%, #daa520 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-/* Bonekrakka combinations (CYAN) */
-.shared-bonekrakka-thugskull {
-    background: linear-gradient(to right, #00ffff 50%, #ff69b4 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-bonekrakka-rippa {
-    background: linear-gradient(to right, #00ffff 50%, #32cd32 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-bonekrakka-scrapfist {
-    background: linear-gradient(to right, #00ffff 50%, #daa520 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-/* Thugskull combinations (HOT PINK) */
-.shared-thugskull-rippa {
-    background: linear-gradient(to right, #ff69b4 50%, #32cd32 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-thugskull-scrapfist {
-    background: linear-gradient(to right, #ff69b4 50%, #daa520 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-/* Rippa combinations (LIME GREEN) */
-.shared-rippa-scrapfist {
-    background: linear-gradient(to right, #32cd32 50%, #daa520 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-/* Add these missing combinations that your function creates */
-
-/* When names are sorted alphabetically by the function */
-.shared-loraghzneckcrusha-reginald {
-    background: linear-gradient(to right, #800080 50%, #ff0000 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-ironjaw-twoferone {
-    background: linear-gradient(to right, #ffa500 50%, #ffff00 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
-}
-
-.shared-ironjaw-reginald {
-    background: linear-gradient(to right, #ffa500 50%, #ff0000 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.shared-loraghzneckcrusha-twoferone {
-    background: linear-gradient(to right, #800080 50%, #ffff00 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
-}
+        .owned-by-bonekrakka { 
+            border-color: #00ffff !important; 
+            background: radial-gradient(circle, rgba(0,255,255,0.4), rgba(0,139,139,0.6)) !important; 
+            color: #000000 !important;
+        }
+        .owned-by-thugskull { 
+            border-color: #ff69b4 !important; 
+            background: radial-gradient(circle, rgba(255,105,180,0.4), rgba(199,21,133,0.6)) !important; 
+            color: #000000 !important;
+        }
+        .owned-by-rippa { 
+            border-color: #32cd32 !important; 
+            background: radial-gradient(circle, rgba(50,205,50,0.4), rgba(34,139,34,0.6)) !important; 
+            color: #ffffff !important;
+        }
+        .owned-by-scrapfist { 
+            border-color: #daa520 !important; 
+            background: radial-gradient(circle, rgba(218,165,32,0.4), rgba(184,134,11,0.6)) !important; 
+            color: #000000 !important;
+        }
+
+        /* ========================================
+           SHARED TERRITORY CONTROL STYLES
+           ======================================== */
+
+        /* Two-way shared control - Reginald combinations */
+        .shared-reginald-twoferone {
+            background: linear-gradient(45deg, #ff0000 50%, #ffff00 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-reginald-loraghzneckcrusha {
+            background: linear-gradient(45deg, #ff0000 50%, #800080 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-reginald-ironjaw {
+            background: linear-gradient(45deg, #ff0000 50%, #ffa500 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-reginald-greenfist {
+            background: linear-gradient(45deg, #ff0000 50%, #00ff00 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-reginald-blacktooth {
+            background: linear-gradient(45deg, #ff0000 50%, #ffffff 50%) !important;
+            border: 4px solid #000000 !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-reginald-redskull {
+            background: linear-gradient(45deg, #ff0000 50%, #8b0000 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-reginald-bonekrakka {
+            background: linear-gradient(45deg, #ff0000 50%, #00ffff 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-reginald-thugskull {
+            background: linear-gradient(45deg, #ff0000 50%, #ff69b4 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-reginald-rippa {
+            background: linear-gradient(45deg, #ff0000 50%, #32cd32 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-reginald-scrapfist {
+            background: linear-gradient(45deg, #ff0000 50%, #daa520 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        /* Twoferone combinations */
+        .shared-twoferone-loraghzneckcrusha {
+            background: linear-gradient(45deg, #ffff00 50%, #800080 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-twoferone-ironjaw {
+            background: linear-gradient(45deg, #ffff00 50%, #ffa500 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-twoferone-greenfist {
+            background: linear-gradient(45deg, #ffff00 50%, #00ff00 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-twoferone-blacktooth {
+            background: linear-gradient(45deg, #ffff00 50%, #ffffff 50%) !important;
+            border: 4px solid #000000 !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-twoferone-redskull {
+            background: linear-gradient(45deg, #ffff00 50%, #8b0000 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-twoferone-bonekrakka {
+            background: linear-gradient(45deg, #ffff00 50%, #00ffff 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-twoferone-thugskull {
+            background: linear-gradient(45deg, #ffff00 50%, #ff69b4 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-twoferone-rippa {
+            background: linear-gradient(45deg, #ffff00 50%, #32cd32 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-twoferone-scrapfist {
+            background: linear-gradient(45deg, #ffff00 50%, #daa520 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        /* Loraghz Neckcrusha combinations */
+        .shared-loraghzneckcrusha-ironjaw {
+            background: linear-gradient(45deg, #800080 50%, #ffa500 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-loraghzneckcrusha-greenfist {
+            background: linear-gradient(45deg, #800080 50%, #00ff00 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-loraghzneckcrusha-blacktooth {
+            background: linear-gradient(45deg, #800080 50%, #ffffff 50%) !important;
+            border: 4px solid #000000 !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-loraghzneckcrusha-redskull {
+            background: linear-gradient(45deg, #800080 50%, #8b0000 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-loraghzneckcrusha-bonekrakka {
+            background: linear-gradient(45deg, #800080 50%, #00ffff 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-loraghzneckcrusha-thugskull {
+            background: linear-gradient(45deg, #800080 50%, #ff69b4 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-loraghzneckcrusha-rippa {
+            background: linear-gradient(45deg, #800080 50%, #32cd32 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-loraghzneckcrusha-scrapfist {
+            background: linear-gradient(45deg, #800080 50%, #daa520 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        /* Ironjaw combinations */
+        .shared-ironjaw-greenfist {
+            background: linear-gradient(45deg, #ffa500 50%, #00ff00 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-ironjaw-blacktooth {
+            background: linear-gradient(45deg, #ffa500 50%, #ffffff 50%) !important;
+            border: 4px solid #000000 !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-ironjaw-redskull {
+            background: linear-gradient(45deg, #ffa500 50%, #8b0000 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-ironjaw-bonekrakka {
+            background: linear-gradient(45deg, #ffa500 50%, #00ffff 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-ironjaw-thugskull {
+            background: linear-gradient(45deg, #ffa500 50%, #ff69b4 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-ironjaw-rippa {
+            background: linear-gradient(45deg, #ffa500 50%, #32cd32 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-ironjaw-scrapfist {
+            background: linear-gradient(45deg, #ffa500 50%, #daa520 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        /* Three-way control */
+        .shared-three-way {
+            background: repeating-linear-gradient(
+                120deg,
+                #ff0000 0%,
+                #ff0000 33.33%,
+                #ffff00 33.33%,
+                #ffff00 66.66%,
+                #800080 66.66%,
+                #800080 100%
+            ) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        /* Contested/neutral */
+        .shared-contested {
+            background: repeating-linear-gradient(
+                45deg,
+                #ffffff 0px,
+                #ffffff 3px,
+                transparent 3px,
+                transparent 6px
+            ) !important;
+            border: 4px dashed #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
+        }
         
         /* Control level indicators */
         .control-contested { border-width: 2px !important; }
@@ -767,8 +586,6 @@
             display: none;
             box-shadow: 0 0 15px rgba(0,255,0,0.5);
         }
-        
-        /* Planet atmosphere effect - removed */
         
         /* Rivers/waterways */
         .river {
@@ -1077,21 +894,21 @@
                 <div class="legend-color" style="background: #8b0000;"></div>
                 <span>Redskull</span>
             </div>
-	    <div class="legend-item">
-    		<div class="legend-color" style="background: #00ffff;"></div>
-   		 <span>Bonekrakka</span>
-	    </div>
-	    <div class="legend-item">
-    		<div class="legend-color" style="background: #ff69b4;"></div>
-    		<span>Thugskull</span>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #00ffff;"></div>
+                <span>Bonekrakka</span>
             </div>
-	    <div class="legend-item">
-    		<div class="legend-color" style="background: #32cd32;"></div>
-    		<span>Rippa</span>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ff69b4;"></div>
+                <span>Thugskull</span>
             </div>
-	    <div class="legend-item">
-    		<div class="legend-color" style="background: #daa520;"></div>
-    		<span>Scrapfist</span>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #32cd32;"></div>
+                <span>Rippa</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #daa520;"></div>
+                <span>Scrapfist</span>
             </div>
         </div>
     </div>
@@ -1103,50 +920,50 @@
         const territories = document.querySelectorAll('.territory');
         const tooltip = document.getElementById('tooltip');
         
-  territories.forEach(territory => {
-    territory.addEventListener('mouseenter', (e) => {
-        const rect = e.target.getBoundingClientRect();
-        const name = e.target.dataset.name;
-        const type = e.target.dataset.type;
-        const modifier = e.target.dataset.modifier;
-        const desc = e.target.dataset.desc;
-        
-        // Enhanced owner display
-        let ownerText;
-        if (e.target.dataset.owners) {
-            const owners = e.target.dataset.owners.split(',');
-            ownerText = `Shared by: ${owners.join(', ')}`;
-        } else if (e.target.dataset.owner) {
-            ownerText = `Owner: ${e.target.dataset.owner}`;
-        } else {
-            ownerText = 'Owner: Neutral';
-        }
-        
-        tooltip.innerHTML = `
-            <strong style="color: #ff0000;">${name}</strong><br>
-            <em style="color: #ffff00;">${type}</em><br>
-            <strong>${ownerText}</strong><br>
-            <strong>Modifier:</strong> ${modifier}<br>
-            <br>${desc}
-        `;
-        
-        tooltip.style.display = 'block';
-        tooltip.style.left = rect.right + 10 + 'px';
-        tooltip.style.top = rect.top + 'px';
-        
-        // Adjust if tooltip goes off screen
-        if (rect.right + 240 > window.innerWidth) {
-            tooltip.style.left = rect.left - 240 + 'px';
-        }
-        if (rect.top + 120 > window.innerHeight) {
-            tooltip.style.top = rect.bottom - 120 + 'px';
-        }
-    });
-    
-    territory.addEventListener('mouseleave', () => {
-        tooltip.style.display = 'none';
-    });
-});
+        territories.forEach(territory => {
+            territory.addEventListener('mouseenter', (e) => {
+                const rect = e.target.getBoundingClientRect();
+                const name = e.target.dataset.name;
+                const type = e.target.dataset.type;
+                const modifier = e.target.dataset.modifier;
+                const desc = e.target.dataset.desc;
+                
+                // Enhanced owner display
+                let ownerText;
+                if (e.target.dataset.owners) {
+                    const owners = e.target.dataset.owners.split(',');
+                    ownerText = `Shared by: ${owners.join(', ')}`;
+                } else if (e.target.dataset.owner) {
+                    ownerText = `Owner: ${e.target.dataset.owner}`;
+                } else {
+                    ownerText = 'Owner: Neutral';
+                }
+                
+                tooltip.innerHTML = `
+                    <strong style="color: #ff0000;">${name}</strong><br>
+                    <em style="color: #ffff00;">${type}</em><br>
+                    <strong>${ownerText}</strong><br>
+                    <strong>Modifier:</strong> ${modifier}<br>
+                    <br>${desc}
+                `;
+                
+                tooltip.style.display = 'block';
+                tooltip.style.left = rect.right + 10 + 'px';
+                tooltip.style.top = rect.top + 'px';
+                
+                // Adjust if tooltip goes off screen
+                if (rect.right + 240 > window.innerWidth) {
+                    tooltip.style.left = rect.left - 240 + 'px';
+                }
+                if (rect.top + 120 > window.innerHeight) {
+                    tooltip.style.top = rect.bottom - 120 + 'px';
+                }
+            });
+            
+            territory.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+            });
+        });
         
         // Handle window resize
         window.addEventListener('resize', () => {
@@ -1155,150 +972,111 @@
         
         // TERRITORIAL CONTROL FUNCTIONS
         
-     // Enhanced function for shared control (FIXED VERSION)
-function claimTerritoryShared(territoryName, warbossArray, controlLevel = 'contested') {
-    const territory = document.querySelector(`[data-name="${territoryName}"]`);
-    if (territory) {
-        // Clear existing ownership
-        liberateTerritory(territoryName);
-        
-        // Normalize names for CSS classes (remove spaces, hyphens, make lowercase)
-        const normalizedNames = warbossArray.map(name => 
-            name.toLowerCase()
-                .replace(/\s+/g, '')           // Remove spaces  
-                .replace(/-/g, '')             // Remove hyphens
-                .replace(/[^a-z0-9]/g, '')     // Remove special characters
-        ).sort();
-        
-        // Create shared class name
-        let sharedClass;
-        if (normalizedNames.length === 2) {
-            sharedClass = `shared-${normalizedNames[0]}-${normalizedNames[1]}`;
-        } else if (normalizedNames.length === 3) {
-            sharedClass = 'shared-three-way';
-        } else {
-            console.error('Shared control supports 2-3 factions only');
-            return;
+        // Enhanced function for shared control (FIXED VERSION)
+        function claimTerritoryShared(territoryName, warbossArray, controlLevel = 'contested') {
+            const territory = document.querySelector(`[data-name="${territoryName}"]`);
+            if (territory) {
+                // Clear existing ownership
+                liberateTerritory(territoryName);
+                
+                // Normalize names for CSS classes (remove spaces, hyphens, make lowercase)
+                const normalizedNames = warbossArray.map(name => 
+                    name.toLowerCase()
+                        .replace(/\s+/g, '')           // Remove spaces  
+                        .replace(/-/g, '')             // Remove hyphens
+                        .replace(/[^a-z0-9]/g, '')     // Remove special characters
+                ).sort();
+                
+                // Create shared class name
+                let sharedClass;
+                if (normalizedNames.length === 2) {
+                    sharedClass = `shared-${normalizedNames[0]}-${normalizedNames[1]}`;
+                } else if (normalizedNames.length === 3) {
+                    sharedClass = 'shared-three-way';
+                } else {
+                    console.error('Shared control supports 2-3 factions only');
+                    return;
+                }
+                
+                territory.classList.add(sharedClass);
+                territory.classList.add(`control-${controlLevel}`);
+                territory.dataset.owners = warbossArray.join(',');
+                territory.dataset.controlLevel = controlLevel;
+                
+                console.log(`${territoryName} now shared by: ${warbossArray.join(', ')} (${controlLevel})`);
+                console.log(`Applied CSS class: ${sharedClass}`);
+                console.log(`Normalized names: [${normalizedNames.join(', ')}]`);
+            } else {
+                console.error(`Territory "${territoryName}" not found`);
+            }
         }
-        
-        territory.classList.add(sharedClass);
-        territory.classList.add(`control-${controlLevel}`);
-        territory.dataset.owners = warbossArray.join(',');
-        territory.dataset.controlLevel = controlLevel;
-        
-        console.log(`${territoryName} now shared by: ${warbossArray.join(', ')} (${controlLevel})`);
-        console.log(`Applied CSS class: ${sharedClass}`);
-        console.log(`Normalized names: [${normalizedNames.join(', ')}]`);
-    } else {
-        console.error(`Territory "${territoryName}" not found`);
-    }
-}
 
-// Enhanced liberateTerritory function (COMPLETE VERSION)
-function liberateTerritory(territoryName) {
-    const territory = document.querySelector(`[data-name="${territoryName}"]`);
-    if (territory) {
-        // Remove all possible ownership classes
-        territory.classList.remove(
-            // Single ownership - including new characters
-            'owned-by-Reginald', 'owned-by-Twoferone', 'owned-by-Loraghz-Neckcrusha', 
-            'owned-by-ironjaw', 'owned-by-greenfist', 'owned-by-blacktooth', 'owned-by-redskull',
-            'owned-by-bonekrakka', 'owned-by-thugskull', 'owned-by-rippa', 'owned-by-scrapfist',
-            
-            // All Reginald shared combinations
-            'shared-reginald-twoferone', 'shared-reginald-loraghzneckcrusha', 'shared-reginald-ironjaw',
-            'shared-reginald-greenfist', 'shared-reginald-blacktooth', 'shared-reginald-redskull',
-            'shared-reginald-bonekrakka', 'shared-reginald-thugskull', 'shared-reginald-rippa', 'shared-reginald-scrapfist',
-            
-            // All Twoferone shared combinations  
-            'shared-twoferone-loraghzneckcrusha', 'shared-twoferone-ironjaw', 'shared-twoferone-greenfist',
-            'shared-twoferone-blacktooth', 'shared-twoferone-redskull', 'shared-twoferone-bonekrakka', 
-            'shared-twoferone-thugskull', 'shared-twoferone-rippa', 'shared-twoferone-scrapfist',
-            
-            // All Loraghz shared combinations
-            'shared-loraghzneckcrusha-ironjaw', 'shared-loraghzneckcrusha-greenfist', 'shared-loraghzneckcrusha-blacktooth', 
-            'shared-loraghzneckcrusha-redskull', 'shared-loraghzneckcrusha-bonekrakka', 'shared-loraghzneckcrusha-thugskull',
-            'shared-loraghzneckcrusha-rippa', 'shared-loraghzneckcrusha-scrapfist',
-            
-            // All Ironjaw shared combinations
-            'shared-ironjaw-greenfist', 'shared-ironjaw-blacktooth', 'shared-ironjaw-redskull',
-            'shared-ironjaw-bonekrakka', 'shared-ironjaw-thugskull', 'shared-ironjaw-rippa', 'shared-ironjaw-scrapfist',
-            
-            // All Greenfist shared combinations
-            'shared-greenfist-blacktooth', 'shared-greenfist-redskull', 'shared-greenfist-bonekrakka',
-            'shared-greenfist-thugskull', 'shared-greenfist-rippa', 'shared-greenfist-scrapfist',
-            
-            // All Blacktooth shared combinations
-            'shared-blacktooth-redskull', 'shared-blacktooth-bonekrakka', 'shared-blacktooth-thugskull',
-            'shared-blacktooth-rippa', 'shared-blacktooth-scrapfist',
-            
-            // All Redskull shared combinations
-            'shared-redskull-bonekrakka', 'shared-redskull-thugskull', 'shared-redskull-rippa', 'shared-redskull-scrapfist',
-            
-            // All Bonekrakka shared combinations
-            'shared-bonekrakka-thugskull', 'shared-bonekrakka-rippa', 'shared-bonekrakka-scrapfist',
-            
-            // All Thugskull shared combinations
-            'shared-thugskull-rippa', 'shared-thugskull-scrapfist',
-            
-            // All Rippa shared combinations
-            'shared-rippa-scrapfist',
-            
-            // Special cases
-            'shared-three-way', 'shared-contested'
-        );
-        
-        territory.classList.remove('control-contested', 'control-secured', 'control-fortified');
-        delete territory.dataset.owner;
-        delete territory.dataset.owners;
-        delete territory.dataset.controlLevel;
-        
-        console.log(`${territoryName} liberated`);
-    }
-}
+        // Enhanced liberateTerritory function (COMPLETE VERSION)
+        function liberateTerritory(territoryName) {
+            const territory = document.querySelector(`[data-name="${territoryName}"]`);
+            if (territory) {
+                // Remove all possible ownership classes
+                const allClasses = Array.from(territory.classList);
+                allClasses.forEach(className => {
+                    if (className.startsWith('owned-by-') || className.startsWith('shared-') || className.startsWith('control-')) {
+                        territory.classList.remove(className);
+                    }
+                });
+                
+                delete territory.dataset.owner;
+                delete territory.dataset.owners;
+                delete territory.dataset.controlLevel;
+                
+                console.log(`${territoryName} liberated`);
+            }
+        }
 
-// Get shared owners function
-function getSharedOwners(territoryName) {
-    const territory = document.querySelector(`[data-name="${territoryName}"]`);
-    if (territory && territory.dataset.owners) {
-        return territory.dataset.owners.split(',');
-    } else if (territory && territory.dataset.owner) {
-        return [territory.dataset.owner];
-    }
-    return [];
-}
+        // Get shared owners function
+        function getSharedOwners(territoryName) {
+            const territory = document.querySelector(`[data-name="${territoryName}"]`);
+            if (territory && territory.dataset.owners) {
+                return territory.dataset.owners.split(',');
+            } else if (territory && territory.dataset.owner) {
+                return [territory.dataset.owner];
+            }
+            return [];
+        }
 
-// Enhanced claimTerritory function (FIXED for name normalization)
-function claimTerritory(territoryName, warbossName, controlLevel = 'contested') {
-    const territory = document.querySelector(`[data-name="${territoryName}"]`);
-    if (territory) {
-        // Remove any existing ownership classes
-        liberateTerritory(territoryName);
-        
-        // Normalize the warboss name (same as shared function)
-        const normalizedName = warbossName.toLowerCase()
-            .replace(/\s+/g, '')           // Remove spaces  
-            .replace(/-/g, '')             // Remove hyphens
-            .replace(/[^a-z0-9]/g, '');    // Remove special characters
-        
-        // Add new ownership using normalized name
-        territory.classList.add(`owned-by-${normalizedName}`);
-        territory.classList.add(`control-${controlLevel}`);
-        territory.dataset.owner = warbossName;
-        territory.dataset.controlLevel = controlLevel;
-        
-        console.log(`${territoryName} claimed by ${warbossName} (${controlLevel})`);
-        console.log(`Applied CSS class: owned-by-${normalizedName}`);
-    } else {
-        console.error(`Territory "${territoryName}" not found`);
-    }
-}
+        // Enhanced claimTerritory function (FIXED for name normalization)
+        function claimTerritory(territoryName, warbossName, controlLevel = 'contested') {
+            const territory = document.querySelector(`[data-name="${territoryName}"]`);
+            if (territory) {
+                // Remove any existing ownership classes
+                liberateTerritory(territoryName);
+                
+                // Normalize the warboss name (same as shared function)
+                const normalizedName = warbossName.toLowerCase()
+                    .replace(/\s+/g, '')           // Remove spaces  
+                    .replace(/-/g, '')             // Remove hyphens
+                    .replace(/[^a-z0-9]/g, '');    // Remove special characters
+                
+                // Add new ownership using normalized name
+                territory.classList.add(`owned-by-${normalizedName}`);
+                territory.classList.add(`control-${controlLevel}`);
+                territory.dataset.owner = warbossName;
+                territory.dataset.controlLevel = controlLevel;
+                
+                console.log(`${territoryName} claimed by ${warbossName} (${controlLevel})`);
+                console.log(`Applied CSS class: owned-by-${normalizedName}`);
+            } else {
+                console.error(`Territory "${territoryName}" not found`);
+            }
+        }
         
         // Update multiple territories at once
         function updateMap(territoryData) {
             // territoryData = [{"territory": "Norf Skar Fortress", "owner": "Reginald", "control": "secured"}, ...]
             territoryData.forEach(data => {
-                claimTerritory(data.territory, data.owner, data.control || 'contested');
+                if (data.owners && Array.isArray(data.owners)) {
+                    claimTerritoryShared(data.territory, data.owners, data.control || 'contested');
+                } else {
+                    claimTerritory(data.territory, data.owner, data.control || 'contested');
+                }
             });
         }
         
@@ -1308,6 +1086,7 @@ function claimTerritory(territoryName, warbossName, controlLevel = 'contested') 
             const mapState = Array.from(territories).map(t => ({
                 name: t.dataset.name,
                 owner: t.dataset.owner || null,
+                owners: t.dataset.owners ? t.dataset.owners.split(',') : null,
                 controlLevel: t.dataset.controlLevel || null
             }));
             return JSON.stringify(mapState, null, 2);
@@ -1322,7 +1101,9 @@ function claimTerritory(territoryName, warbossName, controlLevel = 'contested') 
             });
             // Then apply new state
             mapState.forEach(territory => {
-                if (territory.owner) {
+                if (territory.owners) {
+                    claimTerritoryShared(territory.name, territory.owners, territory.controlLevel);
+                } else if (territory.owner) {
                     claimTerritory(territory.name, territory.owner, territory.controlLevel);
                 }
             });
@@ -1331,35 +1112,56 @@ function claimTerritory(territoryName, warbossName, controlLevel = 'contested') 
         // Get territories owned by a specific WAAAGH!
         function getTerritoriesByOwner(warbossName) {
             const territories = document.querySelectorAll(`[data-owner="${warbossName}"]`);
-            return Array.from(territories).map(t => t.dataset.name);
+            const sharedTerritories = document.querySelectorAll(`[data-owners*="${warbossName}"]`);
+            
+            const ownedList = Array.from(territories).map(t => t.dataset.name);
+            const sharedList = Array.from(sharedTerritories).map(t => t.dataset.name);
+            
+            return {
+                owned: ownedList,
+                shared: sharedList,
+                all: [...ownedList, ...sharedList]
+            };
         }
         
-        // Example usage - Remove these lines when using in production
-        /*
-        // Example: Claim some territories
-        claimTerritory("Norf Skar Fortress", "Reginald", "fortified");
-        claimTerritory("Victory Skar Bay", "Twoferone", "secured");
-        claimTerritory("Speed Freek Plains", "loraghzneckcrusha", "contested");
-        
-        // Example: Save current state
-        console.log("Current map state:", saveMapState());
-        */
-        
         // Make functions globally available for console use
         window.claimTerritory = claimTerritory;
+        window.claimTerritoryShared = claimTerritoryShared;
         window.liberateTerritory = liberateTerritory;
         window.updateMap = updateMap;
         window.saveMapState = saveMapState;
         window.loadMapState = loadMapState;
         window.getTerritoriesByOwner = getTerritoriesByOwner;
-        // Make functions globally available for console use
-        window.claimTerritory = claimTerritory;
-        window.claimTerritoryShared = claimTerritoryShared;  // ADD THIS LINE
-        window.liberateTerritory = liberateTerritory;
-        window.updateMap = updateMap;
-        window.saveMapState = saveMapState;
-        window.loadMapState = loadMapState;
-        window.getTerritoriesByOwner = getTerritoriesByOwner;
+        window.getSharedOwners = getSharedOwners;
+        
+        // Demo function to test shared control
+        function demoSharedControl() {
+            console.log("=== Testing Shared Control ===");
+            
+            // Test two-way shared control
+            claimTerritoryShared("Speed Freek Plains", ["Reginald", "Twoferone"], "contested");
+            claimTerritoryShared("Flying Machine Port", ["Ironjaw", "Greenfist"], "secured");
+            
+            // Test three-way control
+            claimTerritoryShared("Tank Krumpin' Fields", ["Reginald", "Twoferone", "Loraghz Neckcrusha"], "contested");
+            
+            // Test single control for comparison
+            claimTerritory("Norf Skar Fortress", "Blacktooth", "fortified");
+            
+            console.log("Check the map - territories should now show split colors!");
+            console.log("Current map state:", saveMapState());
+        }
+        
+        window.demoSharedControl = demoSharedControl;
+        
+        console.log("=== KRONUS MAP READY ===");
+        console.log("Available functions:");
+        console.log("- claimTerritory(name, owner, level)");
+        console.log("- claimTerritoryShared(name, [owner1, owner2], level)");
+        console.log("- liberateTerritory(name)");
+        console.log("- demoSharedControl() - Test the shared control system");
+        console.log("- saveMapState() / loadMapState(json)");
+        console.log("Try: demoSharedControl() to see shared territories in action!");
     </script>
 </body>
 </html>
