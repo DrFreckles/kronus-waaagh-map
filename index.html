@@ -1266,20 +1266,27 @@ function getSharedOwners(territoryName) {
     return [];
 }
 
-// Enhanced claimTerritory function (for single ownership)
+// Enhanced claimTerritory function (FIXED for name normalization)
 function claimTerritory(territoryName, warbossName, controlLevel = 'contested') {
     const territory = document.querySelector(`[data-name="${territoryName}"]`);
     if (territory) {
         // Remove any existing ownership classes
         liberateTerritory(territoryName);
         
-        // Add new ownership
-        territory.classList.add(`owned-by-${warbossName.toLowerCase()}`);
+        // Normalize the warboss name (same as shared function)
+        const normalizedName = warbossName.toLowerCase()
+            .replace(/\s+/g, '')           // Remove spaces  
+            .replace(/-/g, '')             // Remove hyphens
+            .replace(/[^a-z0-9]/g, '');    // Remove special characters
+        
+        // Add new ownership using normalized name
+        territory.classList.add(`owned-by-${normalizedName}`);
         territory.classList.add(`control-${controlLevel}`);
         territory.dataset.owner = warbossName;
         territory.dataset.controlLevel = controlLevel;
         
         console.log(`${territoryName} claimed by ${warbossName} (${controlLevel})`);
+        console.log(`Applied CSS class: owned-by-${normalizedName}`);
     } else {
         console.error(`Territory "${territoryName}" not found`);
     }
