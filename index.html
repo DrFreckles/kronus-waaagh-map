@@ -254,189 +254,59 @@
 }
 
 /* ========================================
-   SHARED TERRITORY CONTROL STYLES (FIXED)
+   SHARED TERRITORY CONTROL STYLES (SIMPLE)
    ======================================== */
 
-/* Base class for all shared territories */
-.shared-territory {
-    position: relative;
-    overflow: hidden;
-}
-
-/* Two-way split backgrounds using pseudo-elements */
-
-/* Reginald combinations */
+/* Two-way shared - vertical split */
 .shared-Reginald-Twoferone {
-    background: linear-gradient(45deg, #ff0000 50%, #ffff00 50%) !important;
+    background: linear-gradient(to right, #ff0000 50%, #ffff00 50%) !important;
     border: 4px solid #ffffff !important;
-    color: #000000 !important;
-}
-
-.shared-Reginald-Twoferone::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background: rgba(255, 0, 0, 0.7);
-    border-radius: 50% 0 0 50%;
-}
-
-.shared-Reginald-Twoferone::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    background: rgba(255, 255, 0, 0.7);
-    border-radius: 0 50% 50% 0;
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
 }
 
 .shared-Reginald-Loraghz-Neckcrusha {
-    background: linear-gradient(45deg, #ff0000 50%, #800080 50%) !important;
+    background: linear-gradient(to right, #ff0000 50%, #800080 50%) !important;
     border: 4px solid #ffffff !important;
     color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
 }
 
-.shared-Reginald-ironjaw {
-    background: linear-gradient(45deg, #ff0000 50%, #ffa500 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-}
-
-.shared-Reginald-greenfist {
-    background: linear-gradient(45deg, #ff0000 50%, #00ff00 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-}
-
-.shared-Reginald-blacktooth {
-    background: linear-gradient(45deg, #ff0000 50%, #ffffff 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-}
-
-.shared-Reginald-redskull {
-    background: linear-gradient(45deg, #ff0000 50%, #8b0000 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-}
-
-/* Twoferone combinations */
 .shared-Twoferone-Loraghz-Neckcrusha {
-    background: linear-gradient(45deg, #ffff00 50%, #800080 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-}
-
-.shared-Twoferone-ironjaw {
-    background: linear-gradient(45deg, #ffff00 50%, #ffa500 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-}
-
-.shared-Twoferone-greenfist {
-    background: linear-gradient(45deg, #ffff00 50%, #00ff00 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-}
-
-.shared-Twoferone-blacktooth {
-    background: linear-gradient(45deg, #ffff00 50%, #ffffff 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-}
-
-.shared-Twoferone-redskull {
-    background: linear-gradient(45deg, #ffff00 50%, #8b0000 50%) !important;
+    background: linear-gradient(to right, #ffff00 50%, #800080 50%) !important;
     border: 4px solid #ffffff !important;
     color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
 }
 
-/* Loraghz-Neckcrusha combinations */
-.shared-Loraghz-Neckcrusha-ironjaw {
-    background: linear-gradient(45deg, #800080 50%, #ffa500 50%) !important;
+/* Add more combinations using the same pattern */
+.shared-Reginald-ironjaw {
+    background: linear-gradient(to right, #ff0000 50%, #ffa500 50%) !important;
     border: 4px solid #ffffff !important;
     color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
 }
 
-.shared-Loraghz-Neckcrusha-greenfist {
-    background: linear-gradient(45deg, #800080 50%, #00ff00 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-}
-
-.shared-Loraghz-Neckcrusha-blacktooth {
-    background: linear-gradient(45deg, #800080 50%, #ffffff 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #ffffff !important;
-}
-
-.shared-Loraghz-Neckcrusha-redskull {
-    background: linear-gradient(45deg, #800080 50%, #8b0000 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-}
-
-/* Ironjaw combinations */
-.shared-ironjaw-greenfist {
-    background: linear-gradient(45deg, #ffa500 50%, #00ff00 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #000000 !important;
-}
-
-.shared-ironjaw-blacktooth {
-    background: linear-gradient(45deg, #ffa500 50%, #ffffff 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-}
-
-.shared-ironjaw-redskull {
-    background: linear-gradient(45deg, #ffa500 50%, #8b0000 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-}
-
-/* Greenfist combinations */
-.shared-greenfist-blacktooth {
-    background: linear-gradient(45deg, #00ff00 50%, #ffffff 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-}
-
-.shared-greenfist-redskull {
-    background: linear-gradient(45deg, #00ff00 50%, #8b0000 50%) !important;
-    border: 4px solid #ffffff !important;
-    color: #ffffff !important;
-}
-
-/* Blacktooth combinations */
-.shared-blacktooth-redskull {
-    background: linear-gradient(45deg, #ffffff 50%, #8b0000 50%) !important;
-    border: 4px solid #000000 !important;
-    color: #000000 !important;
-}
-
-/* Three-way split using conic gradient */
+/* Three-way using stripes */
 .shared-three-way {
-    background: conic-gradient(from 0deg, #ff0000 0deg 120deg, #ffff00 120deg 240deg, #800080 240deg 360deg) !important;
+    background: linear-gradient(to right, #ff0000 33.33%, #ffff00 33.33% 66.66%, #800080 66.66%) !important;
     border: 4px solid #ffffff !important;
     color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
 }
 
-/* Contested territories */
+/* Contested/neutral */
 .shared-contested {
     background: repeating-linear-gradient(
         45deg,
-        rgba(255,255,255,0.3) 0px,
-        rgba(255,255,255,0.3) 5px,
-        transparent 5px,
-        transparent 10px
+        #ffffff 0px,
+        #ffffff 3px,
+        transparent 3px,
+        transparent 6px
     ) !important;
     border: 4px dashed #ffffff !important;
-    color: #ffffff !important;
+    color: #000000 !important;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
 }
 
         
