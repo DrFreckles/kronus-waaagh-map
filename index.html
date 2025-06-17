@@ -399,6 +399,56 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
         }
 
+        /* Additional missing combinations */
+        .shared-greenfist-twoferone {
+            background: linear-gradient(45deg, #00ff00 50%, #ffff00 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-blacktooth-reginald {
+            background: linear-gradient(45deg, #ffffff 50%, #ff0000 50%) !important;
+            border: 4px solid #000000 !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-bonekrakka-thugskull {
+            background: linear-gradient(45deg, #00ffff 50%, #ff69b4 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-rippa-scrapfist {
+            background: linear-gradient(45deg, #32cd32 50%, #daa520 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-bonekrakka-redskull {
+            background: linear-gradient(45deg, #00ffff 50%, #8b0000 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+        }
+
+        .shared-greenfist-thugskull {
+            background: linear-gradient(45deg, #00ff00 50%, #ff69b4 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
+        .shared-bonekrakka-ironjaw {
+            background: linear-gradient(45deg, #00ffff 50%, #ffa500 50%) !important;
+            border: 4px solid #ffffff !important;
+            color: #000000 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8) !important;
+        }
+
         .shared-loraghzneckcrusha-greenfist {
             background: linear-gradient(45deg, #800080 50%, #00ff00 50%) !important;
             border: 4px solid #ffffff !important;
@@ -1138,18 +1188,31 @@
         function demoSharedControl() {
             console.log("=== Testing Shared Control ===");
             
-            // Test two-way shared control
-            claimTerritoryShared("Speed Freek Plains", ["Reginald", "Twoferone"], "contested");
-            claimTerritoryShared("Flying Machine Port", ["Ironjaw", "Greenfist"], "secured");
+            // Clear the map first
+            document.querySelectorAll('.territory').forEach(t => liberateTerritory(t.dataset.name));
             
-            // Test three-way control
-            claimTerritoryShared("Tank Krumpin' Fields", ["Reginald", "Twoferone", "Loraghz Neckcrusha"], "contested");
-            
-            // Test single control for comparison
-            claimTerritory("Norf Skar Fortress", "Blacktooth", "fortified");
+            // Test combinations that should work now
+            claimTerritoryShared("Big Boss Town", ["Loraghz Neckcrusha", "Ironjaw"], "secured");
+            claimTerritoryShared("Speed Freek Plains", ["Twoferone", "Greenfist"], "contested");
+            claimTerritoryShared("Tall Rock Mines", ["Blacktooth", "Reginald"], "fortified");
+            claimTerritoryShared("Sandy Tomb World", ["Bonekrakka", "Thugskull"], "contested");
+            claimTerritoryShared("Flying Machine Port", ["Reginald", "Twoferone", "Loraghz Neckcrusha"], "contested");
+            claimTerritoryShared("Green Jungle Rok", ["Rippa", "Scrapfist"], "secured");
+            claimTerritoryShared("Corrupted Skar Peninsula", ["Redskull", "Bonekrakka"], "fortified");
+            claimTerritoryShared("Ice Grot Wastes", ["Greenfist", "Thugskull"], "fortified");
+            claimTerritoryShared("Angry Desert", ["Ironjaw", "Bonekrakka"], "contested");
             
             console.log("Check the map - territories should now show split colors!");
-            console.log("Current map state:", saveMapState());
+            console.log("Fixed combinations include:");
+            console.log("- Big Boss Town: Purple/Orange");
+            console.log("- Speed Freek Plains: Yellow/Green");
+            console.log("- Tall Rock Mines: White/Red");
+            console.log("- Sandy Tomb World: Cyan/Pink");
+            console.log("- Flying Machine Port: Three-way stripes");
+            console.log("- Green Jungle Rok: Lime/Gold");
+            console.log("- Corrupted Skar Peninsula: Dark Red/Cyan");
+            console.log("- Ice Grot Wastes: Green/Pink");
+            console.log("- Angry Desert: Orange/Cyan");
         }
         
         window.demoSharedControl = demoSharedControl;
