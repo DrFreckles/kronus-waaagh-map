@@ -1192,25 +1192,60 @@ function claimTerritoryShared(territoryName, warbossArray, controlLevel = 'conte
     }
 }
 
-// Enhanced liberateTerritory function
+// Enhanced liberateTerritory function (COMPLETE VERSION)
 function liberateTerritory(territoryName) {
     const territory = document.querySelector(`[data-name="${territoryName}"]`);
     if (territory) {
         // Remove all possible ownership classes
         territory.classList.remove(
-            // Single ownership
-            'owned-by-Reginald', 'owned-by-Twoferone', 'owned-by-loraghzneckcrusha', 
+            // Single ownership - including new characters
+            'owned-by-Reginald', 'owned-by-Twoferone', 'owned-by-Loraghz-Neckcrusha', 
             'owned-by-ironjaw', 'owned-by-greenfist', 'owned-by-blacktooth', 'owned-by-redskull',
-            // Shared ownership - all combinations
-            'shared-Reginald-Twoferone', 'shared-Reginald-loraghzneckcrusha', 'shared-Reginald-ironjaw',
-            'shared-Reginald-greenfist', 'shared-Reginald-blacktooth', 'shared-Reginald-redskull',
-            'shared-Twoferone-loraghzneckcrusha', 'shared-Twoferone-ironjaw', 'shared-Twoferone-greenfist',
-            'shared-Twoferone-blacktooth', 'shared-Twoferone-redskull', 'shared-loraghzneckcrusha-ironjaw',
-            'shared-loraghzneckcrusha-greenfist', 'shared-loraghzneckcrusha-blacktooth', 'shared-loraghzneckcrusha-redskull',
+            'owned-by-bonekrakka', 'owned-by-thugskull', 'owned-by-rippa', 'owned-by-scrapfist',
+            
+            // All Reginald shared combinations
+            'shared-reginald-twoferone', 'shared-reginald-loraghzneckcrusha', 'shared-reginald-ironjaw',
+            'shared-reginald-greenfist', 'shared-reginald-blacktooth', 'shared-reginald-redskull',
+            'shared-reginald-bonekrakka', 'shared-reginald-thugskull', 'shared-reginald-rippa', 'shared-reginald-scrapfist',
+            
+            // All Twoferone shared combinations  
+            'shared-twoferone-loraghzneckcrusha', 'shared-twoferone-ironjaw', 'shared-twoferone-greenfist',
+            'shared-twoferone-blacktooth', 'shared-twoferone-redskull', 'shared-twoferone-bonekrakka', 
+            'shared-twoferone-thugskull', 'shared-twoferone-rippa', 'shared-twoferone-scrapfist',
+            
+            // All Loraghz shared combinations
+            'shared-loraghzneckcrusha-ironjaw', 'shared-loraghzneckcrusha-greenfist', 'shared-loraghzneckcrusha-blacktooth', 
+            'shared-loraghzneckcrusha-redskull', 'shared-loraghzneckcrusha-bonekrakka', 'shared-loraghzneckcrusha-thugskull',
+            'shared-loraghzneckcrusha-rippa', 'shared-loraghzneckcrusha-scrapfist',
+            
+            // All Ironjaw shared combinations
             'shared-ironjaw-greenfist', 'shared-ironjaw-blacktooth', 'shared-ironjaw-redskull',
-            'shared-greenfist-blacktooth', 'shared-greenfist-redskull', 'shared-blacktooth-redskull',
+            'shared-ironjaw-bonekrakka', 'shared-ironjaw-thugskull', 'shared-ironjaw-rippa', 'shared-ironjaw-scrapfist',
+            
+            // All Greenfist shared combinations
+            'shared-greenfist-blacktooth', 'shared-greenfist-redskull', 'shared-greenfist-bonekrakka',
+            'shared-greenfist-thugskull', 'shared-greenfist-rippa', 'shared-greenfist-scrapfist',
+            
+            // All Blacktooth shared combinations
+            'shared-blacktooth-redskull', 'shared-blacktooth-bonekrakka', 'shared-blacktooth-thugskull',
+            'shared-blacktooth-rippa', 'shared-blacktooth-scrapfist',
+            
+            // All Redskull shared combinations
+            'shared-redskull-bonekrakka', 'shared-redskull-thugskull', 'shared-redskull-rippa', 'shared-redskull-scrapfist',
+            
+            // All Bonekrakka shared combinations
+            'shared-bonekrakka-thugskull', 'shared-bonekrakka-rippa', 'shared-bonekrakka-scrapfist',
+            
+            // All Thugskull shared combinations
+            'shared-thugskull-rippa', 'shared-thugskull-scrapfist',
+            
+            // All Rippa shared combinations
+            'shared-rippa-scrapfist',
+            
+            // Special cases
             'shared-three-way', 'shared-contested'
         );
+        
         territory.classList.remove('control-contested', 'control-secured', 'control-fortified');
         delete territory.dataset.owner;
         delete territory.dataset.owners;
