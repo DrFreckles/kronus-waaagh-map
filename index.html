@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planet Kronus - WAAAGH! Territory Map</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: radial-gradient(circle, #0a0a0a 0%, #000000 100%);
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+        }
+        
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            height: 800px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+            border-radius: 20px;
+            border: 4px solid #00ff00;
+            box-shadow: 0 0 50px rgba(0, 255, 0, 0.3), inset 0 0 100px rgba(0, 0, 0, 0.3);
+            overflow: visible;
+        }
+        
+        /* Landmass background */
+        .continent {
+            position: absolute;
+            background: linear-gradient(45deg, #3a5a2a 0%, #2d4a22 50%, #4a6a3a 100%);
+            border-radius: 40% 60% 70% 30%;
+            top: 15%;
+            left: 20%;
+            width: 60%;
+            height: 70%;
+            opacity: 0.7;
+            transform: rotate(-10deg);
+        }
+        
+        /* Mountain ranges */
+        .mountain-range {
+            position: absolute;
+            background: linear-gradient(135deg, #606060 0%, #404040 50%, #505050 100%);
+            border-radius: 60% 40% 50% 60%;
+            opacity: 0.8;
+        }
+        
+        .mountains-north {
+            top: 10%;
+            right: 15%;
+            width: 25%;
+            height: 20%;
+            transform: rotate(30deg);
+        }
+        
+        .mountains-central {
+            top: 45%;
+            left: 40%;
+            width: 20%;
+            height: 15%;
+            transform: rotate(-20deg);
+        }
+        
+        .mountains-south {
+            bottom: 25%;
+            left: 35%;
+            width: 18%;
+            height: 12%;
+            transform: rotate(45deg);
+        }
+        
+        /* Desert areas */
+        .desert-area {
+            position: absolute;
+            background: radial-gradient(circle, #d2b48c 0%, #daa520 40%, #b8860b 100%);
+            border-radius: 70% 30% 40% 60%;
+            opacity: 0.6;
+        }
+        
+        .desert-central {
+            top: 35%;
+            left: 42%;
+            width: 18%;
+            height: 22%;
+        }
+        
+        .desert-south {
+            bottom: 20%;
+            right: 25%;
+            width: 15%;
+            height: 18%;
+            transform: rotate(20deg);
+        }
+        
+        /* Jungle areas */
+        .jungle-area {
+            position: absolute;
+            background: radial-gradient(ellipse, #228b22 0%, #006400 60%, #2e8b57 100%);
+            border-radius: 50% 70% 60% 40%;
+            opacity: 0.7;
+        }
+        
+        .jungle-southwest {
+            bottom: 15%;
+            left: 15%;
+            width: 22%;
+            height: 25%;
+            transform: rotate(-15deg);
+        }
+        
+        .jungle-east {
+            top: 55%;
+            left: 15%;
+            width: 15%;
+            height: 20%;
+            transform: rotate(30deg);
+        }
+        
+        /* Coastal lines */
+        .coastline {
+            position: absolute;
+            border: 2px solid #4682b4;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        
+        .coast-north {
+            top: 5%;
+            right: 10%;
+            width: 30%;
+            height: 15%;
+            border-bottom: none;
+            border-left: none;
+        }
+        
+        .coast-east {
+            top: 25%;
+            right: 5%;
+            width: 15%;
+            height: 40%;
+            border-left: none;
+            border-top: none;
+            border-bottom: none;
+        }
+        
+        /* Territory markers */
+        .territory {
+            position: absolute;
+            border: 2px solid;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 8px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.3) 100%);
+        }
+        
+        .territory:hover {
+            transform: scale(1.2);
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(255,255,255,0.8);
+        }
+        
+        /* Stronghold territories - larger and more prominent */
+        .stronghold {
+            width: 80px;
+            height: 80px;
+            border-width: 4px;
+            font-size: 9px;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Regular territories */
+        .contested {
+            width: 50px;
+            height: 50px;
+            border-width: 2px;
+            font-size: 7px;
+        }
+        
+        /* Terrain type colors */
+        .mountain { border-color: #888888; color: #ffffff; background: radial-gradient(circle, rgba(136,136,136,0.4), rgba(64,64,64,0.6)); }
+        .desert { border-color: #daa520; color: #8b4513; background: radial-gradient(circle, rgba(218,165,32,0.4), rgba(184,134,11,0.6)); }
+        .jungle { border-color: #32cd32; color: #ffffff; background: radial-gradient(circle, rgba(50,205,50,0.4), rgba(34,139,34,0.6)); }
+        .urban { border-color: #a9a9a9; color: #ffffff; background: radial-gradient(circle, rgba(169,169,169,0.4), rgba(105,105,105,0.6)); }
+        .death { border-color: #ff0000; color: #ffffff; background: radial-gradient(circle, rgba(255,0,0,0.4), rgba(139,0,0,0.6)); }
+        .mek { border-color: #87ceeb; color: #000000; background: radial-gradient(circle, rgba(135,206,235,0.4), rgba(70,130,180,0.6)); }
+        .civilized { border-color: #da70d6; color: #000000; background: radial-gradient(circle, rgba(218,112,214,0.4), rgba(221,160,221,0.6)); }
+        .flatland { border-color: #7cfc00; color: #000000; background: radial-gradient(circle, rgba(124,252,0,0.4), rgba(154,205,50,0.6)); }
+        
+        /* WAAAGH! Ownership Colors - Override terrain colors when claimed */
+        .owned-by-skarjaw { 
+            border-color: #ff0000 !important; 
+            background: radial-gradient(circle, rgba(255,0,0,0.4), rgba(139,0,0,0.6)) !important; 
+            color: #ffffff !important;
+        }
+        .owned-by-grimtoof { 
+            border-color: #ffff00 !important; 
+            background: radial-gradient(circle, rgba(255,255,0,0.4), rgba(218,165,32,0.6)) !important; 
+            color: #000000 !important;
+        }
+        .owned-by-skullkrusha { 
+            border-color: #800080 !important; 
+            background: radial-gradient(circle, rgba(128,0,128,0.4), rgba(75,0,130,0.6)) !important; 
+            color: #ffffff !important;
+        }
+        .owned-by-ironjaw { 
+            border-color: #ffa500 !important; 
+            background: radial-gradient(circle, rgba(255,165,0,0.4), rgba(255,140,0,0.6)) !important; 
+            color: #000000 !important;
+        }
+        .owned-by-greenfist { 
+            border-color: #00ff00 !important; 
+            background: radial-gradient(circle, rgba(0,255,0,0.4), rgba(0,128,0,0.6)) !important; 
+            color: #000000 !important;
+        }
+        .owned-by-blacktooth { 
+            border-color: #ffffff !important; 
+            background: radial-gradient(circle, rgba(255,255,255,0.4), rgba(128,128,128,0.6)) !important; 
+            color: #000000 !important;
+        }
+        .owned-by-redskull { 
+            border-color: #8b0000 !important; 
+            background: radial-gradient(circle, rgba(139,0,0,0.4), rgba(205,92,92,0.6)) !important; 
+            color: #ffffff !important;
+        }
+        
+        /* Control level indicators */
+        .control-contested { border-width: 2px !important; }
+        .control-secured { border-width: 4px !important; }
+        .control-fortified { border-width: 6px !important; box-shadow: 0 0 15px rgba(255,255,255,0.5) !important; }
+        
+        .title {
+            text-align: center;
+            font-size: 24px;
+            color: #ff0000;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            background: linear-gradient(45deg, #ff0000, #ffff00, #ff0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .legend {
+            position: absolute;
+            top: 10px;
+            right: -220px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(20,40,20,0.9));
+            padding: 15px;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            font-size: 10px;
+            width: 200px;
+            box-shadow: 0 0 20px rgba(0,255,0,0.3);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 4px 0;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            margin-right: 6px;
+            border: 1px solid #ffffff;
+            border-radius: 50%;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(20,40,20,0.95));
+            color: #00ff00;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            font-size: 11px;
+            pointer-events: none;
+            z-index: 1000;
+            max-width: 220px;
+            display: none;
+            box-shadow: 0 0 15px rgba(0,255,0,0.5);
+        }
+        
+        /* Planet atmosphere effect - removed */
+        
+        /* Rivers/waterways */
+        .river {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4682b4, transparent);
+            border-radius: 1px;
+            opacity: 0.6;
+        }
+        
+        .river1 {
+            top: 40%;
+            left: 25%;
+            width: 35%;
+            transform: rotate(25deg);
+        }
+        
+        .river2 {
+            top: 60%;
+            left: 30%;
+            width: 25%;
+            transform: rotate(-15deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="title">PLANET KRONUS - DA BIGGEST WAAAGH! WORLD MAP</div>
+    
+    <div class="map-container">
+        <!-- Geographic features -->
+        <div class="continent"></div>
+        
+        <!-- Mountain ranges -->
+        <div class="mountain-range mountains-north"></div>
+        <div class="mountain-range mountains-central"></div>
+        <div class="mountain-range mountains-south"></div>
+        
+        <!-- Desert areas -->
+        <div class="desert-area desert-central"></div>
+        <div class="desert-area desert-south"></div>
+        
+        <!-- Jungle areas -->
+        <div class="jungle-area jungle-southwest"></div>
+        <div class="jungle-area jungle-east"></div>
+        
+        <!-- Coastal lines -->
+        <div class="coastline coast-north"></div>
+        <div class="coastline coast-east"></div>
+        
+        <!-- Rivers -->
+        <div class="river river1"></div>
+        <div class="river river2"></div>
+        
+        <!-- STRONGHOLDS (Starting Territories) -->
+        
+        <!-- Norf Skar Fortress - Northern mountains -->
+        <div class="territory stronghold mountain" 
+             style="top: 15%; right: 20%;"
+             data-name="Norf Skar Fortress"
+             data-type="Mountain Region - Stronghold"
+             data-modifier="Fortifications: Attacker KRUMP halved"
+             data-desc="A proppa 'ard fortress built into da mountains up north. Rocky walls and narrow passes.">
+            NORF<br>SKAR
+        </div>
+        
+        <!-- Victory Skar Bay - Eastern coast -->
+        <div class="territory stronghold urban" 
+             style="top: 35%; right: 8%;"
+             data-name="Victory Skar Bay"
+             data-type="Urban Region - Stronghold"
+             data-modifier="Zone Mortalis (3): Only 3 Mobz can fight here"
+             data-desc="Big ruined city wiv lots of buildin's. Perfect fer close-up krumpin'.">
+            VICTORY<br>BAY
+        </div>
+        
+        <!-- Ice Grot Wastes - Northwestern frozen area -->
+        <div class="territory stronghold death" 
+             style="top: 20%; left: 15%;"
+             data-name="Ice Grot Wastes"
+             data-type="Death Region - Stronghold"
+             data-modifier="+10 KRUMP, -5 WAAAGH!"
+             data-desc="Frozen wasteland where only da 'ardest Orks survive. Snow and ice everywhere.">
+            ICE<br>WASTES
+        </div>
+        
+        <!-- Big Boss Town - Central highlands -->
+        <div class="territory stronghold civilized" 
+             style="top: 35%; left: 35%;"
+             data-name="Big Boss Town"
+             data-type="Civilized Region - Stronghold"
+             data-modifier="+10 FAME, -5 TEEF"
+             data-desc="Big fancy city in da 'ighlands. Lots of nice buildin's and defensible positions.">
+            BIG BOSS<br>TOWN
+        </div>
+        
+        <!-- Green Jungle Rok - Southwestern jungle -->
+        <div class="territory stronghold jungle" 
+             style="bottom: 25%; left: 20%;"
+             data-name="Green Jungle Rok"
+             data-type="Jungle Region - Stronghold"
+             data-modifier="Dense Foliage: Sneaky Gitz +1 warscore"
+             data-desc="Tropical peninsula wiv thick jungle where a big Ork Rok crashed. Perfect fer ambushes.">
+            JUNGLE<br>ROK
+        </div>
+        
+        <!-- Corrupted Skar Peninsula - Southern peninsula -->
+        <div class="territory stronghold death" 
+             style="bottom: 15%; right: 30%;"
+             data-name="Corrupted Skar Peninsula"
+             data-type="Death Region - Stronghold"
+             data-modifier="+10 KRUMP, -5 WAAAGH!"
+             data-desc="Twisted southern peninsula where weird fings 'appen. Da land seems angry.">
+            CORRUPTED<br>SKAR
+        </div>
+        
+        <!-- Sandy Tomb World - Central desert -->
+        <div class="territory stronghold desert" 
+             style="top: 45%; left: 48%;"
+             data-name="Sandy Tomb World"
+             data-type="Desert Region - Stronghold"
+             data-modifier="+10 TEEF, -5 KRUMP"
+             data-desc="Big desert plateau in da middle wiv underground tunnels and ancient ruins.">
+            TOMB<br>WORLD
+        </div>
+        
+        <!-- CONTESTED TERRITORIES -->
+        
+        <!-- Northern territories -->
+        <div class="territory contested mountain" 
+             style="top: 28%; right: 35%;"
+             data-name="Norf Skar 'Ills"
+             data-type="Mountain Territory"
+             data-modifier="Difficult terrain"
+             data-desc="Rocky 'ills leadin' down from northern mountains.">
+            'ILLS
+        </div>
+        
+        <div class="territory contested mek" 
+             style="top: 25%; right: 50%;"
+             data-name="Makin' Stuff Coast"
+             data-type="Mek Territory"
+             data-modifier="+7 KRUMP, +7 TEEF, -4 FAME"
+             data-desc="Coastal area wiv factories and workshops.">
+            COAST
+        </div>
+        
+        <div class="territory contested mountain" 
+             style="top: 35%; left: 25%;"
+             data-name="Tall Rock Mines"
+             data-type="Mountain Territory"
+             data-modifier="Fortifications + Dense cover"
+             data-desc="'Igh mountains wiv mines and tunnels.">
+            MINES
+        </div>
+        
+        <!-- Central territories -->
+        <div class="territory contested mek" 
+             style="top: 40%; right: 25%;"
+             data-name="Flying Machine Port"
+             data-type="Mek Territory"
+             data-modifier="+7 KRUMP, +7 TEEF, -4 FAME"
+             data-desc="Big spaceport wiv flying machines and tech.">
+            PORT
+        </div>
+        
+        <div class="territory contested flatland" 
+             style="top: 50%; right: 40%;"
+             data-name="Speed Freek Plains"
+             data-type="Flatland Territory"
+             data-modifier="Tank 'Eads and Bike Riders +1 warscore"
+             data-desc="Big flat areas perfect fer racin' bikes and tanks.">
+            PLAINS
+        </div>
+        
+        <div class="territory contested flatland" 
+             style="top: 55%; left: 30%;"
+             data-name="Tank Krumpin' Fields"
+             data-type="Flatland Territory"
+             data-modifier="Tank 'Eads and Bike Riders +1 warscore"
+             data-desc="Big open grasslands where tank battles 'appen.">
+            FIELDS
+        </div>
+        
+        <div class="territory contested death" 
+             style="top: 60%; right: 20%;"
+             data-name="Angry Desert"
+             data-type="Death World Territory"
+             data-modifier="+10 KRUMP, -5 WAAAGH!"
+             data-desc="Barren wasteland where sometin' makes everyone angry.">
+            ANGRY
+        </div>
+        
+        <!-- Southern territories -->
+        <div class="territory contested civilized" 
+             style="bottom: 45%; left: 40%;"
+             data-name="Grub Fields"
+             data-type="Civilized Territory"
+             data-modifier="+10 FAME, -5 TEEF"
+             data-desc="Farmin' areas wiv scattered settlements.">
+            GRUB
+        </div>
+        
+        <div class="territory contested jungle" 
+             style="bottom: 40%; left: 25%;"
+             data-name="Learny Tree Place"
+             data-type="Forest Territory"
+             data-modifier="+10 WAAAGH!, -5 FAME"
+             data-desc="Forests wiv old 'umie schools and libraries.">
+            TREES
+        </div>
+        
+        <div class="territory contested mountain" 
+             style="bottom: 35%; left: 45%;"
+             data-name="Big Rock Pass"
+             data-type="Mountain Territory"
+             data-modifier="Fortifications: Natural defensive positions"
+             data-desc="Narrow mountain passes fer stoppin' enemies.">
+            PASS
+        </div>
+        
+        <div class="territory contested desert" 
+             style="bottom: 30%; right: 15%;"
+             data-name="'Ot Sand Desert"
+             data-type="Desert Territory"
+             data-modifier="+10 TEEF, -5 KRUMP"
+             data-desc="Really 'ot desert wiv buried scrap.">
+            SAND
+        </div>
+        
+        <div class="territory contested desert" 
+             style="bottom: 45%; left: 15%;"
+             data-name="Empty Rock Desert"
+             data-type="Desert Territory"
+             data-modifier="+10 TEEF, -5 KRUMP"
+             data-desc="Desert wiv valuable rocks and metals buried everywhere.">
+            ROCKS
+        </div>
+        
+        <!-- Legend -->
+        <div class="legend">
+            <div style="font-weight: bold; margin-bottom: 8px; color: #ff0000;">TERRAIN TYPES</div>
+            <div class="legend-item">
+                <div class="legend-color mountain" style="background: radial-gradient(circle, #888888, #404040);"></div>
+                <span>Mountain</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color desert" style="background: radial-gradient(circle, #daa520, #b8860b);"></div>
+                <span>Desert</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color jungle" style="background: radial-gradient(circle, #32cd32, #228b22);"></div>
+                <span>Jungle/Forest</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color urban" style="background: radial-gradient(circle, #a9a9a9, #696969);"></div>
+                <span>Urban</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color death" style="background: radial-gradient(circle, #ff0000, #8b0000);"></div>
+                <span>Death World</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color mek" style="background: radial-gradient(circle, #87ceeb, #4682b4);"></div>
+                <span>Mek World</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color civilized" style="background: radial-gradient(circle, #da70d6, #dda0dd);"></div>
+                <span>Civilized</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color flatland" style="background: radial-gradient(circle, #7cfc00, #9acd32);"></div>
+                <span>Flatlands</span>
+            </div>
+            <div style="margin-top: 10px; font-weight: bold; color: #ffff00;">
+                Large = Strongholds<br>
+                Small = Contested
+            </div>
+            <div style="margin-top: 10px; font-weight: bold; color: #ff0000;">
+                WAAAGH! COLORS:
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ff0000;"></div>
+                <span>Skarjaw</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ffff00;"></div>
+                <span>Grimtoof</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #800080;"></div>
+                <span>Skullkrusha</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ffa500;"></div>
+                <span>Ironjaw</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #00ff00;"></div>
+                <span>Greenfist</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ffffff;"></div>
+                <span>Blacktooth</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #8b0000;"></div>
+                <span>Redskull</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip"></div>
+    
+    <script>
+        const territories = document.querySelectorAll('.territory');
+        const tooltip = document.getElementById('tooltip');
+        
+        territories.forEach(territory => {
+            territory.addEventListener('mouseenter', (e) => {
+                const rect = e.target.getBoundingClientRect();
+                const name = e.target.dataset.name;
+                const type = e.target.dataset.type;
+                const modifier = e.target.dataset.modifier;
+                const desc = e.target.dataset.desc;
+                
+                tooltip.innerHTML = `
+                    <strong style="color: #ff0000;">${name}</strong><br>
+                    <em style="color: #ffff00;">${type}</em><br>
+                    <strong>Modifier:</strong> ${modifier}<br>
+                    <br>${desc}
+                `;
+                
+                tooltip.style.display = 'block';
+                tooltip.style.left = rect.right + 10 + 'px';
+                tooltip.style.top = rect.top + 'px';
+                
+                // Adjust if tooltip goes off screen
+                if (rect.right + 240 > window.innerWidth) {
+                    tooltip.style.left = rect.left - 240 + 'px';
+                }
+                if (rect.top + 120 > window.innerHeight) {
+                    tooltip.style.top = rect.bottom - 120 + 'px';
+                }
+            });
+            
+            territory.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+            });
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            tooltip.style.display = 'none';
+        });
+        
+        // TERRITORIAL CONTROL FUNCTIONS
+        
+        // Claim a territory for a WAAAGH!
+        function claimTerritory(territoryName, warbossName, controlLevel = 'contested') {
+            const territory = document.querySelector(`[data-name="${territoryName}"]`);
+            if (territory) {
+                // Remove any existing ownership classes
+                territory.classList.remove(
+                    'owned-by-skarjaw', 'owned-by-grimtoof', 'owned-by-skullkrusha', 
+                    'owned-by-ironjaw', 'owned-by-greenfist', 'owned-by-blacktooth', 'owned-by-redskull'
+                );
+                territory.classList.remove('control-contested', 'control-secured', 'control-fortified');
+                
+                // Add new ownership
+                territory.classList.add(`owned-by-${warbossName.toLowerCase()}`);
+                territory.classList.add(`control-${controlLevel}`);
+                territory.dataset.owner = warbossName;
+                territory.dataset.controlLevel = controlLevel;
+                
+                console.log(`${territoryName} claimed by ${warbossName} (${controlLevel})`);
+            } else {
+                console.error(`Territory "${territoryName}" not found`);
+            }
+        }
+        
+        // Liberate a territory (remove ownership)
+        function liberateTerritory(territoryName) {
+            const territory = document.querySelector(`[data-name="${territoryName}"]`);
+            if (territory) {
+                territory.classList.remove(
+                    'owned-by-skarjaw', 'owned-by-grimtoof', 'owned-by-skullkrusha', 
+                    'owned-by-ironjaw', 'owned-by-greenfist', 'owned-by-blacktooth', 'owned-by-redskull'
+                );
+                territory.classList.remove('control-contested', 'control-secured', 'control-fortified');
+                delete territory.dataset.owner;
+                delete territory.dataset.controlLevel;
+                
+                console.log(`${territoryName} liberated`);
+            }
+        }
+        
+        // Update multiple territories at once
+        function updateMap(territoryData) {
+            // territoryData = [{"territory": "Norf Skar Fortress", "owner": "Skarjaw", "control": "secured"}, ...]
+            territoryData.forEach(data => {
+                claimTerritory(data.territory, data.owner, data.control || 'contested');
+            });
+        }
+        
+        // Save current map state to JSON
+        function saveMapState() {
+            const territories = document.querySelectorAll('.territory');
+            const mapState = Array.from(territories).map(t => ({
+                name: t.dataset.name,
+                owner: t.dataset.owner || null,
+                controlLevel: t.dataset.controlLevel || null
+            }));
+            return JSON.stringify(mapState, null, 2);
+        }
+        
+        // Load map state from JSON
+        function loadMapState(jsonState) {
+            const mapState = JSON.parse(jsonState);
+            // First clear all territories
+            document.querySelectorAll('.territory').forEach(t => {
+                liberateTerritory(t.dataset.name);
+            });
+            // Then apply new state
+            mapState.forEach(territory => {
+                if (territory.owner) {
+                    claimTerritory(territory.name, territory.owner, territory.controlLevel);
+                }
+            });
+        }
+        
+        // Get territories owned by a specific WAAAGH!
+        function getTerritoriesByOwner(warbossName) {
+            const territories = document.querySelectorAll(`[data-owner="${warbossName}"]`);
+            return Array.from(territories).map(t => t.dataset.name);
+        }
+        
+        // Example usage - Remove these lines when using in production
+        /*
+        // Example: Claim some territories
+        claimTerritory("Norf Skar Fortress", "Skarjaw", "fortified");
+        claimTerritory("Victory Skar Bay", "Grimtoof", "secured");
+        claimTerritory("Speed Freek Plains", "Skullkrusha", "contested");
+        
+        // Example: Save current state
+        console.log("Current map state:", saveMapState());
+        */
+        
+        // Make functions globally available for console use
+        window.claimTerritory = claimTerritory;
+        window.liberateTerritory = liberateTerritory;
+        window.updateMap = updateMap;
+        window.saveMapState = saveMapState;
+        window.loadMapState = loadMapState;
+        window.getTerritoriesByOwner = getTerritoriesByOwner;
+    </script>
+</body>
+</html>
