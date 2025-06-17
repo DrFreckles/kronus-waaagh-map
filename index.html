@@ -206,7 +206,7 @@
             background: radial-gradient(circle, rgba(255,255,0,0.4), rgba(218,165,32,0.6)) !important; 
             color: #000000 !important;
         }
-        .owned-by-Loraghz Neckcrusha { 
+        .owned-by-Loraghz-Neckcrusha { 
             border-color: #800080 !important; 
             background: radial-gradient(circle, rgba(128,0,128,0.4), rgba(75,0,130,0.6)) !important; 
             color: #ffffff !important;
@@ -267,7 +267,7 @@
     color: #ffffff !important;
 }
 
-.shared-Reginald-Loraghz Neckcrusha {
+.shared-Reginald-Loraghz-Neckcrusha {
     border: 4px solid;
     border-image: linear-gradient(45deg, #ff0000 50%, #800080 50%) 1 !important;
     background: linear-gradient(45deg, rgba(255,0,0,0.3) 50%, rgba(128,0,128,0.3) 50%) !important;
@@ -303,7 +303,7 @@
 }
 
 /* Twoferone combinations */
-.shared-Twoferone-Loraghz Neckcrusha {
+.shared-Twoferone-Loraghz-Neckcrusha {
     border: 4px solid;
     border-image: linear-gradient(45deg, #ffff00 50%, #800080 50%) 1 !important;
     background: linear-gradient(45deg, rgba(255,255,0,0.3) 50%, rgba(128,0,128,0.3) 50%) !important;
@@ -339,28 +339,28 @@
 }
 
 /* Loraghz Neckcrusha combinations */
-.shared-Loraghz Neckcrusha-ironjaw {
+.shared-Loraghz-Neckcrusha-ironjaw {
     border: 4px solid;
     border-image: linear-gradient(45deg, #800080 50%, #ffa500 50%) 1 !important;
     background: linear-gradient(45deg, rgba(128,0,128,0.3) 50%, rgba(255,165,0,0.3) 50%) !important;
     color: #ffffff !important;
 }
 
-.shared-Loraghz Neckcrusha-greenfist {
+.shared-Loraghz-Neckcrusha-greenfist {
     border: 4px solid;
     border-image: linear-gradient(45deg, #800080 50%, #00ff00 50%) 1 !important;
     background: linear-gradient(45deg, rgba(128,0,128,0.3) 50%, rgba(0,255,0,0.3) 50%) !important;
     color: #ffffff !important;
 }
 
-.shared-Loraghz Neckcrusha-blacktooth {
+.shared-Loraghz-Neckcrusha-blacktooth {
     border: 4px solid;
     border-image: linear-gradient(45deg, #800080 50%, #ffffff 50%) 1 !important;
     background: linear-gradient(45deg, rgba(128,0,128,0.3) 50%, rgba(255,255,255,0.3) 50%) !important;
     color: #000000 !important;
 }
 
-.shared-Loraghz Neckcrusha-redskull {
+.shared-Loraghz-Neckcrusha-redskull {
     border: 4px solid;
     border-image: linear-gradient(45deg, #800080 50%, #8b0000 50%) 1 !important;
     background: linear-gradient(45deg, rgba(128,0,128,0.3) 50%, rgba(139,0,0,0.3) 50%) !important;
@@ -913,14 +913,14 @@ function liberateTerritory(territoryName) {
         // Remove all possible ownership classes
         territory.classList.remove(
             // Single ownership
-            'owned-by-Reginald', 'owned-by-Twoferone', 'owned-by-Loraghz Neckcrusha', 
+            'owned-by-Reginald', 'owned-by-Twoferone', 'owned-by-Loraghz-Neckcrusha', 
             'owned-by-ironjaw', 'owned-by-greenfist', 'owned-by-blacktooth', 'owned-by-redskull',
             // Shared ownership - all combinations
-            'shared-Reginald-Twoferone', 'shared-Reginald-Loraghz Neckcrusha', 'shared-Reginald-ironjaw',
+            'shared-Reginald-Twoferone', 'shared-Reginald-Loraghz-Neckcrusha', 'shared-Reginald-ironjaw',
             'shared-Reginald-greenfist', 'shared-Reginald-blacktooth', 'shared-Reginald-redskull',
-            'shared-Twoferone-Loraghz Neckcrusha', 'shared-Twoferone-ironjaw', 'shared-Twoferone-greenfist',
-            'shared-Twoferone-blacktooth', 'shared-Twoferone-redskull', 'shared-Loraghz Neckcrusha-ironjaw',
-            'shared-Loraghz Neckcrusha-greenfist', 'shared-Loraghz Neckcrusha-blacktooth', 'shared-Loraghz Neckcrusha-redskull',
+            'shared-Twoferone-Loraghz-Neckcrusha', 'shared-Twoferone-ironjaw', 'shared-Twoferone-greenfist',
+            'shared-Twoferone-blacktooth', 'shared-Twoferone-redskull', 'shared-Loraghz-Neckcrusha-ironjaw',
+            'shared-Loraghz-Neckcrusha-greenfist', 'shared-Loraghz-Neckcrusha-blacktooth', 'shared-Loraghz-Neckcrusha-redskull',
             'shared-ironjaw-greenfist', 'shared-ironjaw-blacktooth', 'shared-ironjaw-redskull',
             'shared-greenfist-blacktooth', 'shared-greenfist-redskull', 'shared-blacktooth-redskull',
             'shared-three-way', 'shared-contested'
@@ -1009,7 +1009,7 @@ function claimTerritory(territoryName, warbossName, controlLevel = 'contested') 
         // Example: Claim some territories
         claimTerritory("Norf Skar Fortress", "Reginald", "fortified");
         claimTerritory("Victory Skar Bay", "Twoferone", "secured");
-        claimTerritory("Speed Freek Plains", "Loraghz Neckcrusha", "contested");
+        claimTerritory("Speed Freek Plains", "Loraghz-Neckcrusha", "contested");
         
         // Example: Save current state
         console.log("Current map state:", saveMapState());
