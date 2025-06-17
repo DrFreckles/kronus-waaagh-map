@@ -1056,8 +1056,20 @@
                 console.log(`${territoryName} now shared by: ${warbossArray.join(', ')} (${controlLevel})`);
                 console.log(`Applied CSS class: ${sharedClass}`);
                 console.log(`Normalized names: [${normalizedNames.join(', ')}]`);
+                console.log(`Territory element:`, territory);
+                console.log(`Territory classes:`, Array.from(territory.classList));
+                
+                // Check if CSS class exists
+                const testElement = document.createElement('div');
+                testElement.className = sharedClass;
+                document.body.appendChild(testElement);
+                const computedStyle = window.getComputedStyle(testElement);
+                console.log(`CSS class ${sharedClass} background:`, computedStyle.background);
+                document.body.removeChild(testElement);
+                
             } else {
                 console.error(`Territory "${territoryName}" not found`);
+                console.log('Available territories:', Array.from(document.querySelectorAll('.territory')).map(t => t.dataset.name));
             }
         }
 
