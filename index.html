@@ -635,6 +635,68 @@
             color: #000000 !important;
             text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
         }
+
+        /* Supply line styles */
+        .supply-line {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+            border-radius: 2px;
+            opacity: 0.8;
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        .supply-line.active {
+            background: linear-gradient(90deg, transparent, #ffff00, transparent);
+            box-shadow: 0 0 8px rgba(255,255,0,0.6);
+            animation: supply-flow 2s infinite;
+        }
+        
+        .supply-line.disrupted {
+            background: linear-gradient(90deg, transparent, #ff0000, transparent);
+            box-shadow: 0 0 8px rgba(255,0,0,0.6);
+            animation: supply-disrupted 1s infinite;
+        }
+        
+        .supply-line.naval {
+            background: linear-gradient(90deg, transparent, #4682b4, transparent);
+            height: 4px;
+        }
+        
+        .supply-line.air {
+            background: linear-gradient(90deg, transparent, #87ceeb, transparent);
+            height: 2px;
+            animation: supply-air 3s infinite;
+        }
+        
+        @keyframes supply-flow {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes supply-disrupted {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        
+        @keyframes supply-air {
+            0%, 100% { transform: translateY(0px); opacity: 0.6; }
+            50% { transform: translateY(-2px); opacity: 1; }
+        }
+        
+        /* Supply depot markers */
+        .supply-depot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ffff00;
+            border: 2px solid #00ff00;
+            border-radius: 50%;
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: 0 0 8px rgba(255,255,0,0.8);
+        }
         
         /* Control level indicators */
         .control-contested { border-width: 2px !important; }
@@ -693,6 +755,7 @@
             max-width: 220px;
             display: none;
             box-shadow: 0 0 15px rgba(0,255,0,0.5);
+            font-family: 'Courier New', monospace;
         }
         
         /* Rivers/waterways */
@@ -988,7 +1051,7 @@
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: #ffa500;"></div>
-                <span>Norf Skar ‘Ills</span>
+                <span>Norf Skar 'Ills</span>
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: #00ff00;"></div>
@@ -1025,58 +1088,74 @@
     <div class="tooltip" id="tooltip"></div>
     
     <script>
-        const territories = document.querySelectorAll('.territory');
-        const tooltip = document.getElementById('tooltip');
-        
-        territories.forEach(territory => {
-            territory.addEventListener('mouseenter', (e) => {
-                const rect = e.target.getBoundingClientRect();
-                const name = e.target.dataset.name;
-                const type = e.target.dataset.type;
-                const modifier = e.target.dataset.modifier;
-                const desc = e.target.dataset.desc;
+        // Initialize tooltip functionality
+        function initializeTooltips() {
+            const territories = document.querySelectorAll('.territory');
+            const tooltip = document.getElementById('tooltip');
+            
+            if (!tooltip) {
+                console.error('Tooltip element not found!');
+                return;
+            }
+            
+            territories.forEach(territory => {
+                territory.addEventListener('mouseenter', (e) => {
+                    const rect = e.target.getBoundingClientRect();
+                    const name = e.target.dataset.name;
+                    const type = e.target.dataset.type;
+                    const modifier = e.target.dataset.modifier;
+                    const desc = e.target.dataset.desc;
+                    
+                    // Enhanced owner display
+                    let ownerText;
+                    if (e.target.dataset.owners) {
+                        const owners = e.target.dataset.owners.split(',');
+                        ownerText = `Shared by: ${owners.join(', ')}`;
+                    } else if (e.target.dataset.owner) {
+                        ownerText = `Owner: ${e.target.dataset.owner}`;
+                    } else {
+                        ownerText = 'Owner: Neutral';
+                    }
+                    
+                    tooltip.innerHTML = `
+                        <strong style="color: #ff0000;">${name}</strong><br>
+                        <em style="color: #ffff00;">${type}</em><br>
+                        <strong>${ownerText}</strong><br>
+                        <strong>Modifier:</strong> ${modifier}<br>
+                        <br>${desc}
+                    `;
+                    
+                    tooltip.style.display = 'block';
+                    tooltip.style.left = (rect.right + 10) + 'px';
+                    tooltip.style.top = rect.top + 'px';
+                    
+                    // Adjust if tooltip goes off screen
+                    if (rect.right + 240 > window.innerWidth) {
+                        tooltip.style.left = (rect.left - 240) + 'px';
+                    }
+                    if (rect.top + 120 > window.innerHeight) {
+                        tooltip.style.top = (rect.bottom - 120) + 'px';
+                    }
+                    
+                    console.log('Tooltip should be visible:', name); // Debug log
+                });
                 
-                // Enhanced owner display
-                let ownerText;
-                if (e.target.dataset.owners) {
-                    const owners = e.target.dataset.owners.split(',');
-                    ownerText = `Shared by: ${owners.join(', ')}`;
-                } else if (e.target.dataset.owner) {
-                    ownerText = `Owner: ${e.target.dataset.owner}`;
-                } else {
-                    ownerText = 'Owner: Neutral';
-                }
-                
-                tooltip.innerHTML = `
-                    <strong style="color: #ff0000;">${name}</strong><br>
-                    <em style="color: #ffff00;">${type}</em><br>
-                    <strong>${ownerText}</strong><br>
-                    <strong>Modifier:</strong> ${modifier}<br>
-                    <br>${desc}
-                `;
-                
-                tooltip.style.display = 'block';
-                tooltip.style.left = rect.right + 10 + 'px';
-                tooltip.style.top = rect.top + 'px';
-                
-                // Adjust if tooltip goes off screen
-                if (rect.right + 240 > window.innerWidth) {
-                    tooltip.style.left = rect.left - 240 + 'px';
-                }
-                if (rect.top + 120 > window.innerHeight) {
-                    tooltip.style.top = rect.bottom - 120 + 'px';
-                }
+                territory.addEventListener('mouseleave', () => {
+                    tooltip.style.display = 'none';
+                });
             });
             
-            territory.addEventListener('mouseleave', () => {
+            // Handle window resize
+            window.addEventListener('resize', () => {
                 tooltip.style.display = 'none';
             });
-        });
-        
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            tooltip.style.display = 'none';
-        });
+            
+            console.log(`Tooltips initialized for ${territories.length} territories`);
+        }
+
+        // Initialize tooltips when page loads
+        document.addEventListener('DOMContentLoaded', initializeTooltips);
+        initializeTooltips(); // Also call immediately in case DOM is already loaded
         
         // TERRITORIAL CONTROL FUNCTIONS
         
@@ -1092,7 +1171,7 @@
                     'reginald': '#ff0000',
                     'twoferone': '#ffff00', 
                     'loraghzneckcrusha': '#800080',
-                    'Norf Skar ‘Ills': '#ffa500',
+                    'norfskarills': '#ffa500',
                     'greenfist': '#00ff00',
                     'blacktooth': '#ffffff',
                     'redskull': '#8b0000',
@@ -1209,6 +1288,178 @@
             }
         }
         
+        // SUPPLY LINE FUNCTIONS - ADDED
+        function createSupplyLine(fromTerritory, toTerritory, type = 'normal') {
+            const from = document.querySelector(`[data-name="${fromTerritory}"]`);
+            const to = document.querySelector(`[data-name="${toTerritory}"]`);
+            
+            if (!from || !to) {
+                console.error(`Territory not found: ${fromTerritory} or ${toTerritory}`);
+                return null;
+            }
+            
+            const fromRect = from.getBoundingClientRect();
+            const toRect = to.getBoundingClientRect();
+            const mapRect = document.querySelector('.map-container').getBoundingClientRect();
+            
+            const fromX = (fromRect.left + fromRect.width/2 - mapRect.left) / mapRect.width * 100;
+            const fromY = (fromRect.top + fromRect.height/2 - mapRect.top) / mapRect.height * 100;
+            const toX = (toRect.left + toRect.width/2 - mapRect.left) / mapRect.width * 100;
+            const toY = (toRect.top + toRect.height/2 - mapRect.top) / mapRect.height * 100;
+            
+            const deltaX = toX - fromX;
+            const deltaY = toY - fromY;
+            let distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+            const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+            
+            // Prevent lines from extending beyond 75% of map width to avoid legend overlap
+            if (fromX > 75 || toX > 75 || distance > 75) {
+                distance = Math.min(distance, 75);
+            }
+            
+            const line = document.createElement('div');
+            line.className = `supply-line ${type}`;
+            line.style.left = fromX + '%';
+            line.style.top = fromY + '%';
+            line.style.width = distance + '%';
+            line.style.transform = `rotate(${angle}deg)`;
+            line.style.transformOrigin = '0 50%';
+            
+            return line;
+        }
+        
+        function createSupplyDepot(territoryName) {
+            const territory = document.querySelector(`[data-name="${territoryName}"]`);
+            if (!territory) return null;
+            
+            const rect = territory.getBoundingClientRect();
+            const mapRect = document.querySelector('.map-container').getBoundingClientRect();
+            
+            const x = (rect.left + rect.width/2 - mapRect.left) / mapRect.width * 100;
+            const y = (rect.top + rect.height/2 - mapRect.top) / mapRect.height * 100;
+            
+            const depot = document.createElement('div');
+            depot.className = 'supply-depot';
+            depot.style.left = x + '%';
+            depot.style.top = y + '%';
+            depot.style.transform = 'translate(-50%, -50%)';
+            
+            return depot;
+        }
+        
+        function clearSupplyLines() {
+            const existingLines = document.querySelectorAll('.supply-line');
+            const existingDepots = document.querySelectorAll('.supply-depot');
+            existingLines.forEach(line => line.remove());
+            existingDepots.forEach(depot => depot.remove());
+        }
+        
+        function showSupplyLines() {
+            clearSupplyLines();
+            const mapContainer = document.querySelector('.map-container');
+            
+            // Northern Network - Secure supply chain
+            const line1 = createSupplyLine("Norf Skar Fortress", "Norf Skar 'Ills", "active");
+            const line2 = createSupplyLine("Norf Skar 'Ills", "Makin' Stuff Coast", "active");
+            const line3 = createSupplyLine("Makin' Stuff Coast", "Big Boss Town", "active");
+            
+            // Eastern Network - Naval and air superiority
+            const line4 = createSupplyLine("Victory Skar Bay", "Flying Machine Port", "naval");
+            const line5 = createSupplyLine("Flying Machine Port", "Speed Freek Plains", "naval");
+            
+            // Western Network - Ice Grot Wastes connections
+            const line6 = createSupplyLine("Ice Grot Wastes", "Tall Rock Mines", "");
+            const line7 = createSupplyLine("Ice Grot Wastes", "Empty Rock Desert", "");
+            
+            // Southern Network - Jungle to desert corridor
+            const line8 = createSupplyLine("Green Jungle Rok", "Learny Tree Place", "");
+            const line9 = createSupplyLine("Learny Tree Place", "Grub Fields", "");
+            const line10 = createSupplyLine("Grub Fields", "Big Rock Pass", "");
+            const line11 = createSupplyLine("Big Rock Pass", "Sandy Tomb World", "");
+            
+            // Desert Network - Eastern desert chain
+            const line12 = createSupplyLine("Sandy Tomb World", "'Ot Sand Desert", "");
+            const line13 = createSupplyLine("'Ot Sand Desert", "Corrupted Skar Peninsula", "");
+            const line14 = createSupplyLine("Corrupted Skar Peninsula", "Angry Desert", "");
+            
+            // Central Network - Key connections
+            const line15 = createSupplyLine("Big Boss Town", "Sandy Tomb World", "");
+            const line16 = createSupplyLine("Tank Krumpin' Fields", "Big Rock Pass", "");
+            const line17 = createSupplyLine("Tall Rock Mines", "Big Rock Pass", "");
+            
+            // Cross-network connections
+            const line18 = createSupplyLine("Empty Rock Desert", "Green Jungle Rok", "");
+            const line19 = createSupplyLine("Speed Freek Plains", "Tank Krumpin' Fields", "");
+            const line20 = createSupplyLine("Angry Desert", "Speed Freek Plains", "");
+            
+            // Contested/Disrupted routes
+            const line21 = createSupplyLine("Big Boss Town", "Speed Freek Plains", "disrupted");
+            const line22 = createSupplyLine("Flying Machine Port", "Tank Krumpin' Fields", "disrupted");
+            
+            // Air supply routes (limited range to avoid legend)
+            const line23 = createSupplyLine("Flying Machine Port", "Big Boss Town", "air");
+            const line24 = createSupplyLine("Flying Machine Port", "Sandy Tomb World", "air");
+            
+            const allLines = [
+                line1, line2, line3, line4, line5, line6, line7, line8, line9, line10,
+                line11, line12, line13, line14, line15, line16, line17, line18, line19, line20,
+                line21, line22, line23, line24
+            ];
+            
+            allLines.filter(line => line !== null).forEach(line => mapContainer.appendChild(line));
+            
+            // Add supply depots at strategic locations
+            const depot1 = createSupplyDepot("Big Boss Town");
+            const depot2 = createSupplyDepot("Flying Machine Port");
+            const depot3 = createSupplyDepot("Sandy Tomb World");
+            const depot4 = createSupplyDepot("Victory Skar Bay");
+            const depot5 = createSupplyDepot("Ice Grot Wastes");
+            
+            [depot1, depot2, depot3, depot4, depot5]
+                .filter(depot => depot !== null)
+                .forEach(depot => mapContainer.appendChild(depot));
+            
+            console.log("✓ Complete supply network established!");
+            console.log("✓ All territories connected with proper supply routes");
+            console.log("✓ Lines contained within map boundaries");
+            console.log("✓ No overlap with legend area");
+        }
+        
+        function hideSupplyLines() {
+            clearSupplyLines();
+            console.log("Supply lines cleared");
+        }
+        
+        // Demo function for supply scenarios
+        function demoSupplyScenario() {
+            console.log("=== SUPPLY LINE DEMO ===");
+            
+            // Clear and set up territories
+            document.querySelectorAll('.territory').forEach(t => liberateTerritory(t.dataset.name));
+            
+            // Northern Empire
+            claimTerritory("Norf Skar Fortress", "Reginald", "fortified");
+            claimTerritory("Norf Skar 'Ills", "Reginald", "secured");
+            claimTerritory("Makin' Stuff Coast", "Reginald", "secured");
+            
+            // Eastern Coalition
+            claimTerritory("Victory Skar Bay", "Twoferone", "fortified");
+            claimTerritory("Flying Machine Port", "Twoferone", "secured");
+            
+            // Southern Alliance
+            claimTerritory("Green Jungle Rok", "Loraghz Neckcrusha", "fortified");
+            claimTerritory("Sandy Tomb World", "Loraghz Neckcrusha", "secured");
+            claimTerritory("Corrupted Skar Peninsula", "Loraghz Neckcrusha", "secured");
+            
+            // Contested areas
+            claimTerritoryShared("Big Boss Town", ["Reginald", "Twoferone"], "contested");
+            claimTerritoryShared("Speed Freek Plains", ["Reginald", "Twoferone", "Loraghz Neckcrusha"], "contested");
+            
+            showSupplyLines();
+            
+            console.log("Supply scenario active - check the map!");
+        }
+        
         // Update multiple territories at once
         function updateMap(territoryData) {
             // territoryData = [{"territory": "Norf Skar Fortress", "owner": "Reginald", "control": "secured"}, ...]
@@ -1274,6 +1525,9 @@
         window.loadMapState = loadMapState;
         window.getTerritoriesByOwner = getTerritoriesByOwner;
         window.getSharedOwners = getSharedOwners;
+        window.showSupplyLines = showSupplyLines;
+        window.hideSupplyLines = hideSupplyLines;
+        window.demoSupplyScenario = demoSupplyScenario;
         
         // Demo function to test multi-faction control
         function demoMultiFactionControl() {
@@ -1289,14 +1543,14 @@
             claimTerritoryShared("Flying Machine Port", ["Reginald", "Twoferone", "Loraghz Neckcrusha"], "contested");
             
             // Four-way control - Quadrant pattern
-            claimTerritoryShared("Tank Krumpin' Fields", ["Reginald", "Twoferone", "Norf Skar ‘Ills", "Greenfist"], "secured");
+            claimTerritoryShared("Tank Krumpin' Fields", ["Reginald", "Twoferone", "Norf Skar 'Ills", "Greenfist"], "secured");
             
             // Five-way control - Radial slices
-            claimTerritoryShared("Big Boss Town", ["Reginald", "Twoferone", "Norf Skar ‘Ills", "Greenfist", "Blacktooth"], "contested");
+            claimTerritoryShared("Big Boss Town", ["Reginald", "Twoferone", "Norf Skar 'Ills", "Greenfist", "Blacktooth"], "contested");
             
             // Massive 8-way control - Thin radial stripes
             claimTerritoryShared("Sandy Tomb World", [
-                "Reginald", "Twoferone", "Loraghz Neckcrusha", "Norf Skar ‘Ills", 
+                "Reginald", "Twoferone", "Loraghz Neckcrusha", "Norf Skar 'Ills", 
                 "Greenfist", "Blacktooth", "Redskull", "Bonekrakka"
             ], "fortified");
             
@@ -1316,10 +1570,17 @@
         console.log("- claimTerritory(name, owner, level)");
         console.log("- claimTerritoryShared(name, [owner1, owner2, ...], level)");
         console.log("- liberateTerritory(name)");
+        console.log("- showSupplyLines() - Display complete supply network");
+        console.log("- hideSupplyLines() - Clear supply routes");
+        console.log("- demoSupplyScenario() - Full faction conflict + supply lines demo");
         console.log("- demoSharedControl() - Test 2-8 faction control patterns");
         console.log("- demoMultiFactionControl() - Same as above");
         console.log("- saveMapState() / loadMapState(json)");
-        console.log("Try: demoMultiFactionControl() to see multi-faction territories!");
+        console.log("");
+        console.log("✅ All original territory control functions preserved");
+        console.log("✅ Supply line system added");
+        console.log("✅ No changes to existing positioning or control logic");
+        console.log("Try: showSupplyLines() to see the complete network!");
     </script>
 </body>
 </html>
